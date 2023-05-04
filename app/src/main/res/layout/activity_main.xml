@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#91E912"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:screenOrientation="portrait"><!--Bloquear orientacion-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -40,7 +41,7 @@
         android:backgroundTint="#FFFFFF"
         android:text="Login"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="29sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
@@ -64,7 +65,7 @@
         android:backgroundTint="#FFFFFF"
         android:text="Sign Up"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="29sp"
         android:textStyle="bold"
 
         app:cornerRadius="20dp"
