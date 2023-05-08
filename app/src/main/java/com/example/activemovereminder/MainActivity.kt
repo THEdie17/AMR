@@ -16,14 +16,14 @@ class MainActivity : AppCompatActivity() {
         loginbutton = findViewById(R.id.loginButton)
         registerbutton = findViewById(R.id.registerButton)
 
-        //On end dirigeix quan clickem el botó de Login
+        //On ens dirigeix quan clickem el botó de Login
         loginbutton.setOnClickListener {
             //va a la pantalla Login
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }//LoginButton 
         
-        //On end dirigeix quan clickem el botó de Sign Up
+        //On ens dirigeix quan clickem el botó de Sign Up
         registerbutton.setOnClickListener {
             //va a la pantalla Login
             val intent = Intent(this, Register::class.java)
