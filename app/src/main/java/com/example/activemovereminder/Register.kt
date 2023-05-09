@@ -29,7 +29,6 @@ class Register : AppCompatActivity() {
         emailEt = findViewById(R.id.nameEt)
         passEt = findViewById(R.id.emailEt)
         nameEt = findViewById(R.id.passwdEt)
-        dateTxt = findViewById(R.id.dateTxt)
         register = findViewById(R.id.registButton)
         auth = FirebaseAuth.getInstance()
 
