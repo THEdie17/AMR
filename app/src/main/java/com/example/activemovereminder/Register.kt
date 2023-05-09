@@ -1,8 +1,6 @@
 package com.example.activemovereminder
 
-import android.content.Intent
 import android.graphics.Typeface
-import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -10,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -29,11 +26,11 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_register)
-        emailEt = findViewById(R.id.emailEt)
-        passEt = findViewById(R.id.passEt)
-        nameEt = findViewById(R.id.nameEt)
+        emailEt = findViewById(R.id.nameEt)
+        passEt = findViewById(R.id.emailEt)
+        nameEt = findViewById(R.id.passwdEt)
         dateTxt = findViewById(R.id.dateTxt)
-        register = findViewById(R.id.register)
+        register = findViewById(R.id.registButton)
         auth = FirebaseAuth.getInstance()
 
 
