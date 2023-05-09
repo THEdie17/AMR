@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ActiveMoveReminder</string>
+    <string name="passEt" />
+    <string name="nameEt" />
+    <string name="dateTxt" />
+    <string name="register" />
+    <string name="emailEt" />
 </resources>
