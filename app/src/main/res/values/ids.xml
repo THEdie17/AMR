@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="guideline10" type="id" />
+    <item name="guideline14" type="id" />
+    <item name="guideline13" type="id" />
+    <item name="guideline9" type="id" />
+    <item name="registerButton" type="id" />
+    <item name="guideline5" type="id" />
+    <item name="guideline4" type="id" />
+    <item name="guideline12" type="id" />
+    <item name="guideline11" type="id" />
+    <item name="guideline8" type="id" />
+    <item name="guideline2" type="id" />
+    <item name="guideline7" type="id" />
+    <item name="guideline3" type="id" />
+    <item name="guideline6" type="id" />
+    <item name="guideline" type="id" />
+    <item name="loginButton" type="id" />
+</resources>
