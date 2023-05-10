@@ -41,12 +41,12 @@ class Menu : AppCompatActivity() {
 
         val tf = Typeface.createFromAsset(assets, "fonts/edosz.ttf")
         val tf2 = Typeface.createFromAsset(assets, "fonts/retro.ttf")
-        editBtn = findViewById(R.id.editOptBtn)
+        /*editBtn = findViewById(R.id.editOptBtn)
         uid = findViewById(R.id.passwordShow)
         emailPlayer = findViewById(R.id.emailShow)
         usernamePlayer = findViewById(R.id.nameShow)
         myScore = findViewById(R.id.miPuntuaciotxt)
-        score = findViewById(R.id.puntuacio)
+        score = findViewById(R.id.puntuacio)*/
 
         //Efectos de sonido
         soundPool = SoundPool.Builder().setMaxStreams(1).build()
@@ -75,10 +75,10 @@ class Menu : AppCompatActivity() {
             }
         })
 
-        creditsBtn = findViewById(R.id.CreditsBtn)
+        /*creditsBtn = findViewById(R.id.CreditsBtn)
         scoresBtn = findViewById(R.id.PuntuacionsBtn)
         playBtn = findViewById(R.id.jugarBtn)
-        closeSession = findViewById(R.id.GoBack)
+        closeSession = findViewById(R.id.GoBack)*/
 
         editBtn.typeface = tf
         myScore.typeface = tf

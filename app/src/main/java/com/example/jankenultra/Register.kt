@@ -17,7 +17,7 @@ import java.util.*
 
 
 class Register : AppCompatActivity() {
-
+//Declarem les variables que farem servir
     private lateinit var emailEt: EditText
     private lateinit var passEt: EditText
     private lateinit var nameEt: EditText
@@ -27,7 +27,7 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
+        //Les dades a introduïr
         emailEt = findViewById(R.id.emailEt)
         passEt = findViewById(R.id.passEt)
         nameEt = findViewById(R.id.nameEt)
@@ -59,7 +59,7 @@ class Register : AppCompatActivity() {
         }
     }
 
-
+//Para registrar el email i el password
     private fun registerPlayer(email: String, pass: String) {
         auth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
@@ -75,6 +75,7 @@ class Register : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) = //hi ha un interrogant perquè podria ser null
+        //Si el usuari no existeix quan es crea, les dades que s'han de introduïr
         if (user != null) {
             val uidString: String = user.uid
             val emailString: String = emailEt.text.toString()
@@ -84,7 +85,7 @@ class Register : AppCompatActivity() {
             val completeExercise = 0
 
             val dadesJugador : HashMap<String,String> = HashMap<String, String>()
-
+            //Dades que es guarden a la base de dades quan el jugador es registra
             dadesJugador["Uid"] = uidString
             dadesJugador["Email"] = emailString
             dadesJugador["Password"] = passString
@@ -105,35 +106,18 @@ class Register : AppCompatActivity() {
             Toast.makeText(
                 this, "ERROR CREATE USER ",Toast.LENGTH_SHORT).show()
         }
+
+
+    //Creem les rutines dintre del Array
     private fun makeRoutines(user: String){
-
-        val arrayRoutines = Array(5) { Array(4) { "0" } }
-        arrayRoutines[0][0] = "1"
-        arrayRoutines[0][1] = "_Rutina Dilluns"
-        arrayRoutines[0][2] = "1"
-        arrayRoutines[0][3] = "Part Inferior"
-
-        arrayRoutines[1][0] = "2"
-        arrayRoutines[1][1] = "_Rutina Dimarts"
-        arrayRoutines[1][2] = "2"
-        arrayRoutines[1][3] = "Pit, Hombros i Triceps"
-
-        arrayRoutines[2][0] = "3"
-        arrayRoutines[2][1] = "_Rutina Dimecres"
-        arrayRoutines[2][2] = "3"
-        arrayRoutines[2][3] = "Esquena i Biceps"
-
-        arrayRoutines[3][0] = "5"
-        arrayRoutines[3][1] = "_Rutina Divendres"
-        arrayRoutines[3][2] = "5"
-        arrayRoutines[3][3] = "Resistencia"
-
-        arrayRoutines[4][0] = "6"
-        arrayRoutines[4][1] = "z_Rutina Dissabte"
-        arrayRoutines[4][2] = "6"
-        arrayRoutines[4][3] = "Tot el cos"
-
-
+        val arrayRoutines: Array<Array<String>> = arrayOf(
+            arrayOf("1", "_Rutina Dilluns","1","Part Inferior"),
+            arrayOf("2", "_Rutina Dimarts","2","Pit, Hombros i Triceps"),
+            arrayOf("3", "_Rutina Dimecres","3","Esquena i Biceps"),
+            arrayOf("5", "_Rutina Divendres","5","Resistencia"),
+            arrayOf("6", "z_Rutina Dissabte","6","Tot el cos")
+        )
+        //Quan es crea un usuari nou, se'ls crea les rutines per cada usuari amb els exercicis
         if (user != null) {
             for (i in 0 until arrayRoutines.size) {
                 val id_Routine = arrayRoutines[i][0]
@@ -160,6 +144,18 @@ class Register : AppCompatActivity() {
 
         }
 
+    }
+
+    //Creem els excersisi dintre de les rutines
+    private fun makeExercise(user: String){
+
+        val arrayRoutines: Array<Array<String>> = arrayOf(
+            arrayOf("1", "_Rutina Dilluns","1","Part Inferior"),
+            arrayOf("2", "_Rutina Dimarts","2","Pit, Hombros i Triceps"),
+            arrayOf("3", "_Rutina Dimecres","3","Esquena i Biceps"),
+            arrayOf("5", "_Rutina Divendres","5","Resistencia"),
+            arrayOf("6", "z_Rutina Dissabte","6","Tot el cos")
+        )
     }
 }
 

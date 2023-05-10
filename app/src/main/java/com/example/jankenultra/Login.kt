@@ -23,6 +23,7 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         //Despleguem les variables que farem servir
         emailLogin = findViewById(R.id.emailLogin)
         passLogin = findViewById(R.id.passLogin)
@@ -51,7 +52,7 @@ class Login : AppCompatActivity() {
             }
         }
     }
-
+//Comprovar que les dades de email i password són correctes
     private fun playerLogin(email: String, passw: String) {
         auth.signInWithEmailAndPassword(email, passw)
             .addOnCompleteListener(this)

@@ -52,7 +52,7 @@ class GameLevel3 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        rock = findViewById(R.id.buttonRock)
+        rock = findViewById(R.id.buttonuser)
         rock.setOnClickListener{
             userChoice = 0
             checkButton()
