@@ -17,22 +17,24 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class EditProfile : AppCompatActivity() {
+
     private lateinit var back: Button
+    private lateinit var logOut: Button
     private lateinit var auth: FirebaseAuth
+    /*
     private lateinit var editUser: ImageButton
     private lateinit var editEmail: ImageButton
     private lateinit var editPass: ImageButton
     private lateinit var editImage: ImageButton
+    */
     private lateinit var pass: TextView
     private lateinit var emailPlayer: TextView
     private lateinit var usernamePlayer: TextView
+    private lateinit var numRoutines: TextView
+    private lateinit var numExercise: TextView
     private lateinit var editUserShow: TextView
     private lateinit var editEmailShow: TextView
     private lateinit var editPassShow: TextView
-
-    //Efectos de sonido
-    private lateinit var soundPool: SoundPool
-    private var soundId: Int = 0
 
 
     private var user: FirebaseUser? = null
@@ -41,50 +43,61 @@ class EditProfile : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
         val tf = Typeface.createFromAsset(assets, "fonts/edosz.ttf")
         val tf2 = Typeface.createFromAsset(assets, "fonts/retro.ttf")
+        /*
         editImage = findViewById(R.id.editImage)
         editUser = findViewById(R.id.editUser)
         editEmail = findViewById(R.id.editEmail)
         editPass = findViewById(R.id.editPassword)
         editUserShow = findViewById(R.id.editNameShow)
+
         editEmailShow = findViewById(R.id.editEmailShow)
         editPassShow = findViewById(R.id.editPasswordShow)
+        */
+        usernamePlayer = findViewById(R.id.nameUser)
+        emailPlayer = findViewById(R.id.useEmail)
+        numExercise = findViewById(R.id.nExercisis)
+        numRoutines = findViewById(R.id.nRutines)
 
-        usernamePlayer = findViewById(R.id.nameShow)
-        emailPlayer = findViewById(R.id.emailShow)
-        pass = findViewById(R.id.passwordShow)
-
-        //Efectos de sonido
-        soundPool = SoundPool.Builder().setMaxStreams(1).build()
-        soundId = soundPool.load(this, R.raw.menu, 1)
+        logOut = findViewById(R.id.LogOut)
+        logOut.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         back = findViewById(R.id.GoBack)
         back.setOnClickListener {
-            playSound()
             val intent = Intent(this, Menu::class.java)
             startActivity(intent)
         }
         back.typeface = tf
+        /*
         editUserShow.typeface = tf
         editEmailShow.typeface = tf
         editPassShow.typeface = tf
-        pass.typeface = (tf2)
+        pass.typeface = (tf2)*/
         emailPlayer.typeface = (tf2)
         usernamePlayer.typeface = (tf2)
         val database: FirebaseDatabase =
             FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
-        val myRef = user?.uid?.let { database.reference.child("DATA_BASE_JUGADORS").child(it) }
+        val myRef = user?.uid?.let { database.reference.child("DATA_BASE_AMR").child(it) }
         myRef?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val email = dataSnapshot.child("Email").getValue(String::class.java)
-                val name = dataSnapshot.child("Nom").getValue(String::class.java)
-                val password = dataSnapshot.child("Password").getValue(String::class.java)
+                val name = dataSnapshot.child("Name").getValue(String::class.java)
+                val nRoutines = dataSnapshot.child("complete Routines").getValue(String::class.java)
+                val nExercise = dataSnapshot.child("complete Exercise").getValue(String::class.java)
 
                 // utilizar email y name según sea necesario
-                pass.text = password
                 emailPlayer.text = email
+                Toast.makeText(this@EditProfile,"Email: "+emailPlayer,Toast.LENGTH_SHORT).show()
                 usernamePlayer.text = name
-
+                Toast.makeText(this@EditProfile,"Name: "+usernamePlayer,Toast.LENGTH_SHORT).show()
+                numExercise.text = nExercise
+                Toast.makeText(this@EditProfile,"nE: "+numExercise,Toast.LENGTH_SHORT).show()
+                numRoutines.text = nRoutines
+                Toast.makeText(this@EditProfile,"nR: "+numRoutines,Toast.LENGTH_SHORT).show()
+/*
                 editUser.setOnClickListener {
                     val builder = AlertDialog.Builder(this@EditProfile)
                     builder.setTitle("Cambiar nombre de usuario")
@@ -184,7 +197,7 @@ class EditProfile : AppCompatActivity() {
                     val dialog = builder.create()
                     dialog.show()
                 }
-
+*/
 
             }
 
@@ -214,12 +227,6 @@ class EditProfile : AppCompatActivity() {
                 // check if the new password is different from the previous ones
                 return !passwordHistory.contains(newPassword)
             }
-
         })
-
     }
-    private fun playSound() {
-        soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
-    }
-
 }

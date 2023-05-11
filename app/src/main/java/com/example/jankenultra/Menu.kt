@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,8 @@ class Menu : AppCompatActivity() {
     private lateinit var creditsBtn: Button
     private lateinit var scoresBtn: Button
     private lateinit var playBtn: Button
-    private lateinit var editBtn: Button
+    private lateinit var profileBtn: ImageButton
+    private lateinit var backBtn: ImageButton
     private lateinit var myScore: TextView
     private lateinit var NumRoutines: String
     private lateinit var NumExercise: String
@@ -37,14 +39,8 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        val tf = Typeface.createFromAsset(assets, "fonts/edosz.ttf")
-        val tf2 = Typeface.createFromAsset(assets, "fonts/retro.ttf")
-        /*editBtn = findViewById(R.id.editOptBtn)
-        uid = findViewById(R.id.passwordShow)
-        emailPlayer = findViewById(R.id.emailShow)
-        usernamePlayer = findViewById(R.id.nameShow)
-        myScore = findViewById(R.id.miPuntuaciotxt)
-        score = findViewById(R.id.puntuacio)*/
+        profileBtn = findViewById(R.id.buttonuser)
+        backBtn = findViewById(R.id.buttomenu)
 
         val database: FirebaseDatabase =
             FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -110,15 +106,7 @@ class Menu : AppCompatActivity() {
             startActivity(intent)
         }
 
-        editBtn.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
-            startActivity(intent)
-        }
 
-        playBtn.setOnClickListener {
-            val intent = Intent(this, ChooseLevel::class.java)
-            startActivity(intent)
-        }
         scoresBtn.setOnClickListener {
             Toast.makeText(this, "Scores", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ScoreList::class.java)
@@ -126,8 +114,17 @@ class Menu : AppCompatActivity() {
         }
         */
 
-    }
+        profileBtn.setOnClickListener {
+            val intent = Intent(this, EditProfile::class.java)//Cambiar el destinio
+            startActivity(intent)
+        }
+        backBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
+    }
+/*
     override fun onStart() {
         loggedUser()
         super.onStart()
@@ -145,7 +142,7 @@ class Menu : AppCompatActivity() {
             finish()
         }
     }
-
+*/
     private fun closeTheSession() {
         auth.signOut() //tanca la sessió
         //va a la pantalla inicial
