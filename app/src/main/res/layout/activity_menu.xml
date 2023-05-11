@@ -11,31 +11,119 @@
         android:id="@+id/scrollView2"
         android:layout_width="398dp"
         android:layout_height="666dp"
+        android:layout_marginTop="180px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="Descripción"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/buttonmonday"
                 android:layout_width="350dp"
                 android:layout_height="190dp"
-                android:layout_marginLeft="120px"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
                 android:background="#FFFFFF"
                 android:baselineAlignBottom="false"
                 android:contentDescription="MondayRoutine"
                 android:minWidth="200dp"
                 android:minHeight="200dp"
+                android:shape="rectangle"
                 android:textAlignment="center"
                 app:srcCompat="@drawable/piernas" />
+
+            <ImageButton
+                android:id="@+id/tuesdayButton"
+                android:layout_width="350dp"
+                android:layout_height="190dp"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
+                android:background="#000000"
+                android:baselineAlignBottom="false"
+                android:contentDescription="TuesdayRoutine"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/pit" />
+
+            <ImageButton
+                android:id="@+id/WednsdayButton"
+                android:layout_width="350dp"
+                android:layout_height="190dp"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
+                android:background="#FFFFFF"
+                android:baselineAlignBottom="false"
+                android:contentDescription="WednesdayRoutine"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/esquena" />
+
+            <ImageButton
+                android:id="@+id/rest1"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
+                android:background="#FFFFFF"
+                android:baselineAlignBottom="false"
+                android:contentDescription="rest"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/dijous" />
+
+            <ImageButton
+                android:id="@+id/fridayButton"
+                android:layout_width="350dp"
+                android:layout_height="190dp"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
+                android:background="#FFFFFF"
+                android:baselineAlignBottom="false"
+                android:contentDescription="FridayRoutine"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/cardio" />
+
+            <ImageButton
+                android:id="@+id/saturdayButton"
+                android:layout_width="350dp"
+                android:layout_height="190dp"
+                android:layout_marginLeft="85px"
+                android:layout_marginTop="40px"
+                android:background="#FFFFFF"
+                android:baselineAlignBottom="false"
+                android:contentDescription="SaturdayRoutine"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/full" />
+
+            <ImageButton
+                android:id="@+id/rest2"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginLeft="75px"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="150dp"
+                android:background="#FFFFFF"
+                android:baselineAlignBottom="false"
+                android:contentDescription="rest"
+                android:minWidth="200dp"
+                android:minHeight="200dp"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/diumenge" />
 
         </LinearLayout>
     </ScrollView>
@@ -54,8 +142,10 @@
         app:flow_verticalAlign="center"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView11"
