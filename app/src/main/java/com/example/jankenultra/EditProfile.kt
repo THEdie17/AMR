@@ -90,13 +90,9 @@ class EditProfile : AppCompatActivity() {
 
                 // utilizar email y name según sea necesario
                 emailPlayer.text = email
-                Toast.makeText(this@EditProfile,"Email: "+emailPlayer,Toast.LENGTH_SHORT).show()
                 usernamePlayer.text = name
-                Toast.makeText(this@EditProfile,"Name: "+usernamePlayer,Toast.LENGTH_SHORT).show()
                 numExercise.text = nExercise
-                Toast.makeText(this@EditProfile,"nE: "+numExercise,Toast.LENGTH_SHORT).show()
                 numRoutines.text = nRoutines
-                Toast.makeText(this@EditProfile,"nR: "+numRoutines,Toast.LENGTH_SHORT).show()
 /*
                 editUser.setOnClickListener {
                     val builder = AlertDialog.Builder(this@EditProfile)

@@ -111,11 +111,49 @@ class Register : AppCompatActivity() {
     //Creem les rutines dintre del Array
     private fun makeRoutines(user: String){
         val arrayRoutines: Array<Array<String>> = arrayOf(
+            //      Id - Nom rutina - Dia - Objectiu - Complert = false
             arrayOf("1", "_Rutina Dilluns","1","Part Inferior"),
             arrayOf("2", "_Rutina Dimarts","2","Pit, Hombros i Triceps"),
             arrayOf("3", "_Rutina Dimecres","3","Esquena i Biceps"),
             arrayOf("5", "_Rutina Divendres","5","Resistencia"),
             arrayOf("6", "z_Rutina Dissabte","6","Tot el cos")
+        )
+        val arrayExercise: Array<Array<String>> = arrayOf(
+            //      Id - Rutina - Nom - Series - Repeticions - Descans - Consell - Imatge(URL) - Complert = false
+            //Rutina Dilluns
+            arrayOf("1","1","Squats", "3","10","00:01:00","","RutinaDilluns/OF_Sentadillas","false"),
+            arrayOf("2","1","Aixecament de genolls", "3","10xCostat","00:01:00","","RutinaDilluns/OF_Rodillas arriba","false"),
+            arrayOf("3","1","Pas endavant", "3","5xCostat","00:01:00","","RutinaDilluns/OF_Zancadas","false"),
+            arrayOf("4","1","aixecament amb bessons", "3","10","00:01:00","","RutinaDilluns/OF_gemelos","false"),
+            arrayOf("5","1","Abdominals", "3","5","00:01:00","","RutinaDilluns/OF_Abdominales","false"),
+            arrayOf("6","1","planxa", "3","30 Segons","00:01:00","","RutinaDilluns/OF_Plancha","false"),
+
+            //Rutina Dimarts
+            arrayOf("7","2","Flexiones normales", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones normales","false"),
+            arrayOf("8","2","Flexiones escalonadas", "3","5xCostat","00:01:00","","RutinaDimarts/OF_Flexiones escalonadas","false"),
+            arrayOf("9","2","Flexiones V", "3","8","00:01:00","","RutinaDimarts/OF_Flexiones v","false"),
+            arrayOf("10","2","Flexiones diamante", "3","5","00:01:00","","RutinaDimarts/OF_Flexiones diamante","false"),
+            arrayOf("11","2","Flexiones lumbares", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones lumbares","false"),
+            arrayOf("12","2","Fondos", "3","6","00:01:00","","RutinaDimarts/OF_Flexiones con silla","false"),
+
+            //Rutina Dimecres
+            arrayOf("13","3","Tissora braços", "3","30Segons","00:00:20","","RutinaDimecres/OF_Tijera brazos","false"),
+            arrayOf("14","3","Rotació braços", "3","30Segons","00:00:30","","RutinaDimecres/OF_elevacion brazos","false"),
+            arrayOf("15","3","Estira braç i cama", "3","5xCostat","00:00:30","","RutinaDimecres/OF_estiramiento","false"),
+            arrayOf("16","3","Remo", "3","10","00:01:00","","RutinaDimecres/OF_remo","false"),
+            arrayOf("17","3","Estirament lateral", "3","30SegonsXCostat","00:00:30","","RutinaDimecres/OF_Estiramiento lateral","false"),
+            arrayOf("18","3","Postura vaca-gat", "3","30Segons","00:00:30","","RutinaDimecres/OF_Estiramiento espalda","false"),
+
+            //Rutina Divendres
+            arrayOf("19","3","Correr", "1","1","00:00:00","Recomenable corre uns 10Km","RutinaDivendres/OF_Sentadillas","false"),
+
+            //Rutina Dissabte
+            arrayOf("20","4","Cops a l'aire", "1","30Segons","00:00:30","","RutinaDivendres/OF_golpe boxeo","false"),
+            arrayOf("21","4","Flexions profundes", "3","10","00:01:00","","RutinaDivendres/OF_flexiones intensivos","false"),
+            arrayOf("22","4","Escalara montanya", "3","5xCostat","00:01:00","","RutinaDivendres/OF_mountain climbing","false"),
+            arrayOf("23","4","Burpies", "3","10","00:01:00","","RutinaDivendres/OF_burpies","false"),
+            arrayOf("24","4","Aixecar cames", "3","10","00:01:00","","RutinaDivendres/OF_Abdominales bajos","false"),
+            arrayOf("25","4","Planxa", "1","1Minut","","","RutinaDivendres/OF_plancha","false")
         )
         //Quan es crea un usuari nou, se'ls crea les rutines per cada usuari amb els exercicis
         if (user != null) {
