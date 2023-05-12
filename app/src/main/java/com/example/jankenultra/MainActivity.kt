@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onStart() {
+/*  override fun onStart() {
         usuariLogejat()
         super.onStart()
     }
@@ -56,5 +56,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
+    }*/
 }
