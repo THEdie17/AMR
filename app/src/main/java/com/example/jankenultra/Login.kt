@@ -2,7 +2,6 @@ package com.example.jankenultra
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
