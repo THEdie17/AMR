@@ -4,31 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#420381">
+    android:background="#FFFFFF">
 
     <TextView
-        android:id="@+id/Nom_Jugador"
+        android:id="@+id/Nom_exercici1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
+        android:text="nombre_ejercico"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Puntuacio_Jugador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/consejo_ejercicio1"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
         android:layout_marginTop="12dp"
         android:paddingBottom="50dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
+        android:text="Consejo"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nom_Jugador" />
+        app:layout_constraintTop_toBottomOf="@+id/Nom_exercici1" />
+
+    <ImageView
+        android:id="@+id/imageEjercico1"
+        android:layout_width="93dp"
+        android:layout_height="79dp"
+        android:layout_marginEnd="84dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/fet1"
+        android:layout_width="72dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="#FF0000"
+        android:text="No fet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.636" />
+
+    <TextView
+        android:id="@+id/repetitions1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Repeticiones"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Nom_exercici1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.188" />
+
+    <TextView
+        android:id="@+id/descans1"
+        android:layout_width="88dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="16dp"
+        android:text="Descans"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/consejo_ejercicio1" />
+
+    <TextView
+        android:id="@+id/nSeries"
+        android:layout_width="88dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="44dp"
+        android:text="series"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/consejo_ejercicio1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

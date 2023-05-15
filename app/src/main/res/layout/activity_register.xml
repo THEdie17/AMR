@@ -5,31 +5,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F3F3"
     tools:context=".Register">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F1F1F1"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp">
 
         <!-- ENTREM EL MAIL -->
-        <EditText
-            android:id="@+id/emailEt"
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:hint="@string/emailEt"
-            android:inputType="textEmailAddress" />
+
         <!-- forcem que la entrada sigui un correu electronic -->
 
         <!-- ENTREM EL PASSWORD -->
         <EditText
+            android:id="@+id/emailEt"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:backgroundTint="#000000"
+            android:hint="@string/emailEt"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/purple_700" />
+
+        <EditText
             android:id="@+id/passEt"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:backgroundTint="#000000"
             android:hint="@string/passEt"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/purple_700" />
         <!-- forcem que la entrada sigui un password -->
 
 
@@ -38,7 +47,10 @@
             android:id="@+id/nameEt"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:hint="@string/nameEt" />
+            android:backgroundTint="#000000"
+            android:hint="@string/nameEt"
+            android:textColor="@color/black"
+            android:textColorHint="@color/purple_700" />
 
         <!-- DATA ACTUAL -->
 
@@ -48,8 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:backgroundTint="@color/purple_500"
             android:text="@string/register"
             android:textColor="#000000"
             tools:textStyle="bold" />
+
     </LinearLayout>
 </RelativeLayout>

@@ -18,6 +18,7 @@ import java.util.*
 
 class Register : AppCompatActivity() {
 //Declarem les variables que farem servir
+    private lateinit var pathing: String
     private lateinit var emailEt: EditText
     private lateinit var passEt: EditText
     private lateinit var nameEt: EditText
@@ -121,42 +122,48 @@ class Register : AppCompatActivity() {
         val arrayExercise: Array<Array<String>> = arrayOf(
             //      Id - Rutina - Nom - Series - Repeticions - Descans - Consell - Imatge(URL) - Complert = false
             //Rutina Dilluns
-            arrayOf("1","1","Squats", "3","10","00:01:00","","RutinaDilluns/OF_Sentadillas","false"),
-            arrayOf("2","1","Aixecament de genolls", "3","10xCostat","00:01:00","","RutinaDilluns/OF_Rodillas arriba","false"),
-            arrayOf("3","1","Pas endavant", "3","5xCostat","00:01:00","","RutinaDilluns/OF_Zancadas","false"),
-            arrayOf("4","1","aixecament amb bessons", "3","10","00:01:00","","RutinaDilluns/OF_gemelos","false"),
-            arrayOf("5","1","Abdominals", "3","5","00:01:00","","RutinaDilluns/OF_Abdominales","false"),
-            arrayOf("6","1","planxa", "3","30 Segons","00:01:00","","RutinaDilluns/OF_Plancha","false"),
+            arrayOf("1","1","z1_Squats", "3","10","00:01:00","","RutinaDilluns/OF_Sentadillas"),
+            arrayOf("2","1","z2_Aixecament de genolls", "3","10xCostat","00:01:00","","RutinaDilluns/OF_Rodillas arriba"),
+            arrayOf("3","1","z3_Pas endavant", "3","5xCostat","00:01:00","","RutinaDilluns/OF_Zancadas"),
+            arrayOf("4","1","z4_Aixecament amb bessons", "3","10","00:01:00","","RutinaDilluns/OF_gemelos"),
+            arrayOf("5","1","z5_Abdominals", "3","5","00:01:00","","RutinaDilluns/OF_Abdominales"),
+            arrayOf("6","1","z6_Planxa", "3","30 Segons","00:01:00","","RutinaDilluns/OF_Plancha"),
 
             //Rutina Dimarts
-            arrayOf("7","2","Flexiones normales", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones normales","false"),
-            arrayOf("8","2","Flexiones escalonadas", "3","5xCostat","00:01:00","","RutinaDimarts/OF_Flexiones escalonadas","false"),
-            arrayOf("9","2","Flexiones V", "3","8","00:01:00","","RutinaDimarts/OF_Flexiones v","false"),
-            arrayOf("10","2","Flexiones diamante", "3","5","00:01:00","","RutinaDimarts/OF_Flexiones diamante","false"),
-            arrayOf("11","2","Flexiones lumbares", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones lumbares","false"),
-            arrayOf("12","2","Fondos", "3","6","00:01:00","","RutinaDimarts/OF_Flexiones con silla","false"),
+            arrayOf("7","2","z1_Flexiones normales", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones normales"),
+            arrayOf("8","2","z2_Flexiones escalonadas", "3","5xCostat","00:01:00","","RutinaDimarts/OF_Flexiones escalonadas"),
+            arrayOf("9","2","z3_Flexiones V", "3","8","00:01:00","","RutinaDimarts/OF_Flexiones v"),
+            arrayOf("10","2","z4_Flexiones diamante", "3","5","00:01:00","","RutinaDimarts/OF_Flexiones diamante"),
+            arrayOf("11","2","z5_Flexiones lumbares", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones lumbares"),
+            arrayOf("12","2","z6_Fondos", "3","6","00:01:00","","RutinaDimarts/OF_Flexiones con silla"),
 
             //Rutina Dimecres
-            arrayOf("13","3","Tissora braços", "3","30Segons","00:00:20","","RutinaDimecres/OF_Tijera brazos","false"),
-            arrayOf("14","3","Rotació braços", "3","30Segons","00:00:30","","RutinaDimecres/OF_elevacion brazos","false"),
-            arrayOf("15","3","Estira braç i cama", "3","5xCostat","00:00:30","","RutinaDimecres/OF_estiramiento","false"),
-            arrayOf("16","3","Remo", "3","10","00:01:00","","RutinaDimecres/OF_remo","false"),
-            arrayOf("17","3","Estirament lateral", "3","30SegonsXCostat","00:00:30","","RutinaDimecres/OF_Estiramiento lateral","false"),
-            arrayOf("18","3","Postura vaca-gat", "3","30Segons","00:00:30","","RutinaDimecres/OF_Estiramiento espalda","false"),
+            arrayOf("13","3","z1_Tissora braços", "3","30Segons","00:00:20","","RutinaDimecres/OF_Tijera brazos"),
+            arrayOf("14","3","z2_Rotació braços", "3","30Segons","00:00:30","","RutinaDimecres/OF_elevacion brazos"),
+            arrayOf("15","3","z3_Estira braç i cama", "3","5xCostat","00:00:30","","RutinaDimecres/OF_estiramiento"),
+            arrayOf("16","3","z4_Remo", "3","10","00:01:00","","RutinaDimecres/OF_remo"),
+            arrayOf("17","3","z5_Estirament lateral", "3","30SegonsXCostat","00:00:30","","RutinaDimecres/OF_Estiramiento lateral"),
+            arrayOf("18","3","z6_Postura vaca-gat", "3","30Segons","00:00:30","","RutinaDimecres/OF_Estiramiento espalda"),
 
             //Rutina Divendres
-            arrayOf("19","3","Correr", "1","1","00:00:00","Recomenable corre uns 10Km","RutinaDivendres/OF_Sentadillas","false"),
+            arrayOf("19","3","z1_Correr", "1","1","00:00:00","Recomenable corre uns 8Km","RutinaDissabte/OF_Correr"),
+            arrayOf("20","3","z2_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
+            arrayOf("21","3","z2_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
+            arrayOf("22","3","z4_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
+            arrayOf("23","3","z5_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
+            arrayOf("24","3","z6_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
 
             //Rutina Dissabte
-            arrayOf("20","4","Cops a l'aire", "1","30Segons","00:00:30","","RutinaDivendres/OF_golpe boxeo","false"),
-            arrayOf("21","4","Flexions profundes", "3","10","00:01:00","","RutinaDivendres/OF_flexiones intensivos","false"),
-            arrayOf("22","4","Escalara montanya", "3","5xCostat","00:01:00","","RutinaDivendres/OF_mountain climbing","false"),
-            arrayOf("23","4","Burpies", "3","10","00:01:00","","RutinaDivendres/OF_burpies","false"),
-            arrayOf("24","4","Aixecar cames", "3","10","00:01:00","","RutinaDivendres/OF_Abdominales bajos","false"),
-            arrayOf("25","4","Planxa", "1","1Minut","","","RutinaDivendres/OF_plancha","false")
+            arrayOf("25","4","z1_Cops a l'aire", "1","30Segons","00:00:30","","RutinaDivendres/OF_golpe boxeo"),
+            arrayOf("26","4","z2_Flexions profundes", "3","10","00:01:00","","RutinaDivendres/OF_flexiones intensivos"),
+            arrayOf("27","4","z2_Escalara montanya", "3","5xCostat","00:01:00","","RutinaDivendres/OF_mountain climbing"),
+            arrayOf("28","4","z4_Burpies", "3","10","00:01:00","","RutinaDivendres/OF_burpies"),
+            arrayOf("29","4","z5_Aixecar cames", "3","10","00:01:00","","RutinaDivendres/OF_Abdominales bajos"),
+            arrayOf("30","4","z6_Planxa", "1","1Minut","","","RutinaDivendres/OF_plancha")
         )
         //Quan es crea un usuari nou, se'ls crea les rutines per cada usuari amb els exercicis
         if (user != null) {
+            var num_exe = 0
             for (i in 0 until arrayRoutines.size) {
                 val id_Routine = arrayRoutines[i][0]
                 val nameRoutine: String = arrayRoutines[i][1]
@@ -177,23 +184,40 @@ class Register : AppCompatActivity() {
                 if(reference!=null) {
                     //crea un fill amb els valors de dadesJugador
                     reference.child("z"+nameRoutine).setValue(dadesJugador)
+
+                    for (j in 1..6) {
+                        val id_exercise = arrayExercise[num_exe][0]
+                        val id_Routine = arrayExercise[num_exe][1]
+                        val nameExercise: String = arrayExercise[num_exe][2]
+                        val nSeries: String = arrayExercise[num_exe][3]
+                        val nReplays: String = arrayExercise[num_exe][4]
+                        val rest: String = arrayExercise[num_exe][5]
+                        val suggestion: String = arrayExercise[num_exe][6]
+                        val imgName = arrayExercise[num_exe][7]
+                        val complete: Boolean = false
+
+                        val dadesRutines : HashMap<String,String> = HashMap<String, String>()
+                        dadesRutines["ID_Exercise"] = id_exercise
+                        dadesRutines["ID_Routine"] = id_Routine
+                        dadesRutines["nameExercise"] = nameExercise
+                        dadesRutines["nSeries"] = nSeries
+                        dadesRutines["nReplays"] = nReplays
+                        dadesRutines["rest"] = rest
+                        dadesRutines["suggestion"] = suggestion
+                        dadesRutines["imgName"] = imgName
+                        dadesRutines["complete"] = complete.toString()
+                        // Creem un punter a la base de dades i li donem un nom
+                        val reference2: DatabaseReference = database.getReference("DATA_BASE_AMR/"+user+"/z" + nameRoutine)
+                        if(reference2!=null) {
+                            //crea un fill amb els valors de dadesJugador
+                            reference2.child(nameExercise).setValue(dadesRutines)
+                        }
+                        num_exe = num_exe + 1
+                        pathing = "DATA_BASE_AMR/"+user+"/z" + nameRoutine
+                    }
                 }
             }
-
         }
-
-    }
-
-    //Creem els excersisi dintre de les rutines
-    private fun makeExercise(user: String){
-
-        val arrayRoutines: Array<Array<String>> = arrayOf(
-            arrayOf("1", "_Rutina Dilluns","1","Part Inferior"),
-            arrayOf("2", "_Rutina Dimarts","2","Pit, Hombros i Triceps"),
-            arrayOf("3", "_Rutina Dimecres","3","Esquena i Biceps"),
-            arrayOf("5", "_Rutina Divendres","5","Resistencia"),
-            arrayOf("6", "z_Rutina Dissabte","6","Tot el cos")
-        )
     }
 }
 

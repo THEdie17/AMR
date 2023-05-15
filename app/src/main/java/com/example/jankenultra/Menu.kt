@@ -24,6 +24,12 @@ class Menu : AppCompatActivity() {
     private lateinit var playBtn: Button
     private lateinit var profileBtn: ImageButton
     private lateinit var backBtn: ImageButton
+    private lateinit var buttonmonday: ImageButton
+    private lateinit var tuesdayButton: ImageButton
+    private lateinit var WednsdayButton: ImageButton
+    private lateinit var fridayButton: ImageButton
+    private lateinit var saturdayButton: ImageButton
+    private lateinit var pathing_user: String
     private lateinit var myScore: TextView
     private lateinit var NumRoutines: String
     private lateinit var NumExercise: String
@@ -42,6 +48,13 @@ class Menu : AppCompatActivity() {
         profileBtn = findViewById(R.id.buttonuser)
         backBtn = findViewById(R.id.buttomenu)
 
+        //Rutinas
+        buttonmonday = findViewById(R.id.buttonmonday)
+        tuesdayButton = findViewById(R.id.tuesdayButton)
+        WednsdayButton = findViewById(R.id.WednsdayButton)
+        fridayButton = findViewById(R.id.fridayButton)
+        saturdayButton = findViewById(R.id.saturdayButton)
+        pathing_user = ""
         val database: FirebaseDatabase =
             FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
         auth = FirebaseAuth.getInstance()
@@ -122,6 +135,31 @@ class Menu : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        buttonmonday.setOnClickListener {
+            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dilluns"
+            val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
+            startActivity(intent)
+        }
+        tuesdayButton.setOnClickListener {
+            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dimarts"
+            val intent = Intent(this, ScoreList::class.java)
+            startActivity(intent)
+        }
+        WednsdayButton.setOnClickListener {
+            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dimecres"
+            val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
+            startActivity(intent)
+        }
+        fridayButton.setOnClickListener {
+            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Divendres"
+            val intent = Intent(this, ScoreList::class.java)
+            startActivity(intent)
+        }
+        saturdayButton.setOnClickListener {
+            pathing_user = "DATA_BASE_AMR/"+user+"/zz_Rutina Dissabte"
+            val intent = Intent(this, ScoreList::class.java)
+            startActivity(intent)
+        }
 
     }
 /*
@@ -149,6 +187,10 @@ class Menu : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+    fun getPathing():String {
+        pathing_user = String()
+        return pathing_user
     }
 
 

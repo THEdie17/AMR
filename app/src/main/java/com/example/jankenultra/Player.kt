@@ -1,3 +1,3 @@
 package com.example.jankenultra
 
-class Player (val nom_jugador:String, val score_jugador:String)
+class Player (val nomExercise:String, val nReplays:String, val nSeries:String, val rest:String, val imgName:String, val suggestion:String, val complete: String)
