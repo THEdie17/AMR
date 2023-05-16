@@ -55,6 +55,8 @@ class Menu : AppCompatActivity() {
         fridayButton = findViewById(R.id.fridayButton)
         saturdayButton = findViewById(R.id.saturdayButton)
         pathing_user = ""
+
+        uid = ""
         val database: FirebaseDatabase =
             FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
         auth = FirebaseAuth.getInstance()
@@ -136,28 +138,34 @@ class Menu : AppCompatActivity() {
             startActivity(intent)
         }
         buttonmonday.setOnClickListener {
-            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dilluns"
+            pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dilluns"
+                    //"/DATA_BASE_AMR/hEzKISzJ4fbmg17nhRK122HVXWo1/z_Rutina Dilluns"
             val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
+            intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
         tuesdayButton.setOnClickListener {
-            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dimarts"
+            pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dimarts"
             val intent = Intent(this, ScoreList::class.java)
+            intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
         WednsdayButton.setOnClickListener {
-            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Dimecres"
+            pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dimecres"
             val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
+            intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
         fridayButton.setOnClickListener {
-            pathing_user = "DATA_BASE_AMR/"+user+"/z_Rutina Divendres"
+            pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Divendres"
             val intent = Intent(this, ScoreList::class.java)
+            intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
         saturdayButton.setOnClickListener {
-            pathing_user = "DATA_BASE_AMR/"+user+"/zz_Rutina Dissabte"
+            pathing_user = "DATA_BASE_AMR/"+uid+"/zz_Rutina Dissabte"
             val intent = Intent(this, ScoreList::class.java)
+            intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
 
@@ -192,6 +200,4 @@ class Menu : AppCompatActivity() {
         pathing_user = String()
         return pathing_user
     }
-
-
 }

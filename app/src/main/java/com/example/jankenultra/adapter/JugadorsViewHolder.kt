@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jankenultra.Menu
 import com.example.jankenultra.R
@@ -15,7 +16,7 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
     val nReplays = view.findViewById<TextView>(R.id.repetitions1)
     val nSeries = view.findViewById<TextView>(R.id.nSeries)
     val rest = view.findViewById<TextView>(R.id.descans1)
-    var imageEjercico1 = ""
+    var imageEjercico1 = 1
     val image  = view.findViewById<ImageView>(R.id.imageEjercico1)
     val suggestion = view.findViewById<TextView>(R.id.consejo_ejercicio1)
     var complete = ""
@@ -27,11 +28,10 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
         nReplays.text = JugadorModel.nReplays
         nSeries.text = JugadorModel.nSeries
         rest.text = JugadorModel.rest
-        imageEjercico1 = JugadorModel.imgName
+        imageEjercico1 = JugadorModel.imgId
         Picasso.get()
             .load(imageEjercico1)
             .into(image)
         suggestion.text = JugadorModel.suggestion
-
     }
 }

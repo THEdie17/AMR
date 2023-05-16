@@ -56,7 +56,6 @@ class Register : AppCompatActivity() {
             } else {
                 registerPlayer(email, pass)
             }
-
         }
     }
 
@@ -173,12 +172,12 @@ class Register : AppCompatActivity() {
 
                 val dadesJugador : HashMap<String,String> = HashMap<String, String>()
 
-                dadesJugador["ID_Routine"] = id_Routine
-                dadesJugador["nameRoutine"] = nameRoutine
-                dadesJugador["weekDay"] = weekDay
-                dadesJugador["objective"] = objective
+                //dadesJugador["ID_Routine"] = id_Routine
+                //dadesJugador["nameRoutine"] = nameRoutine
+                //dadesJugador["weekDay"] = weekDay
+                //dadesJugador["objective"] = objective
                 dadesJugador["Uid"] = user
-                dadesJugador["complete"] = complete.toString()
+                //dadesJugador["complete"] = complete.toString()
                 // Creem un punter a la base de dades i li donem un nom
                 val reference: DatabaseReference = database.getReference("DATA_BASE_AMR/"+user)
                 if(reference!=null) {
