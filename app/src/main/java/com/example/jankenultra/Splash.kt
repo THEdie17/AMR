@@ -8,7 +8,9 @@ import java.util.Timer
 import kotlin.concurrent.schedule
 
 class Splash : AppCompatActivity() {
-    private val duration: Long=10000
+    //La durada que es veurà aquesta pantalla abans de cambiar a la pantalla principal
+    private val duration: Long=6000
+    //La musica de fons que sonarà
     lateinit var mp: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -21,11 +23,14 @@ class Splash : AppCompatActivity() {
         //cridem a la funció de canviar activitat
         changeActivity()
     }
+    /*Un cop que passi el temps  farà la funció per cambiar de pantalla*/
     private fun changeActivity(){
         Timer().schedule(duration){
             jumpStart()
         }
     }
+    /*La funció ens diu quina pantala mostrarà un cop passat el temps que li hem dit que que es mostri aquesta pantalla
+    un cop passat el temps mostrarà la pantalla principal*/
     private fun jumpStart() {
         val intent = Intent(this, MainActivity::class.java)
         mp.release()
