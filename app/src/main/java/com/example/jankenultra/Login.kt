@@ -30,12 +30,11 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         login = findViewById(R.id.login)
 
-
-
-
+        //Aquesta variable tf ens serveix per poder cambiar el estil de la lletra que es veurà
         val tf = Typeface.createFromAsset(assets,"fonts/edosz.ttf")
         login.typeface = (tf)
 
+        //Aquest fragment és per validar que tant el email i la password introduïdes són correctes 
         login.setOnClickListener {
             //Abans de fer el registre validem les dades
             val email: String = emailLogin.text.toString()
@@ -44,7 +43,7 @@ class Login : AppCompatActivity() {
             // si no es de tipus correu
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailLogin.error = "Invalid Mail"
-            } else if (passw.length < 6) {
+            } else if (passw.length < 6) {//Validem que el tamany de la password sigui correcte
                 passLogin.error = "Password less than 6 chars"
             } else {
                 // aquí farem LOGIN al jugador
@@ -52,7 +51,7 @@ class Login : AppCompatActivity() {
             }
         }
     }
-//Comprovar que les dades de email i password són correctes
+//Comprovar que les dades de email i password són correctes i que abans ja han siguit registrades
     private fun playerLogin(email: String, passw: String) {
         auth.signInWithEmailAndPassword(email, passw)
             .addOnCompleteListener(this)
@@ -72,6 +71,7 @@ class Login : AppCompatActivity() {
             }
     }
 
+    //Aquesta funció ens portarà si tot es correccte i apretem el botó de login a la pantalla de les rutines
     private fun updateUI() {
         val intent = Intent(this, Menu::class.java)
         startActivity(intent)
