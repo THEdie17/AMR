@@ -60,9 +60,8 @@ class ScoreList : AppCompatActivity() {
                             nReplays,
                             nSeries,
                             rest,
-                            imgName,
                             suggestion,
-                            complete,getDrawableResourceId(imgName)
+                            complete,getDrawableResourceId(imgName),pathing_base
                         )
                         jugadors.add(j1)
                     }else{
@@ -79,7 +78,7 @@ class ScoreList : AppCompatActivity() {
         })
     }
 
-    private fun getDrawableResourceId(name: String): Int {
-        return resources.getIdentifier("lizard", "drawable", packageName)
+    private fun getDrawableResourceId(imgName: String): Int {
+        return resources.getIdentifier(imgName, "drawable", packageName)
     }
 }

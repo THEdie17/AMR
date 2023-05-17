@@ -121,44 +121,44 @@ class Register : AppCompatActivity() {
         val arrayExercise: Array<Array<String>> = arrayOf(
             //      Id - Rutina - Nom - Series - Repeticions - Descans - Consell - Imatge(URL) - Complert = false
             //Rutina Dilluns
-            arrayOf("1","1","z1_Squats", "3","10","00:01:00","","RutinaDilluns/OF_Sentadillas"),
-            arrayOf("2","1","z2_Aixecament de genolls", "3","10xCostat","00:01:00","","RutinaDilluns/OF_Rodillas arriba"),
-            arrayOf("3","1","z3_Pas endavant", "3","5xCostat","00:01:00","","RutinaDilluns/OF_Zancadas"),
-            arrayOf("4","1","z4_Aixecament amb bessons", "3","10","00:01:00","","RutinaDilluns/OF_gemelos"),
-            arrayOf("5","1","z5_Abdominals", "3","5","00:01:00","","RutinaDilluns/OF_Abdominales"),
-            arrayOf("6","1","z6_Planxa", "3","30 Segons","00:01:00","","RutinaDilluns/OF_Plancha"),
+            arrayOf("1","1","z1_Squats", "3","10","00:01:00","","of_sentadillas"),
+            arrayOf("2","1","z2_Aixecament de genolls", "3","10xCostat","00:01:00","","of_rodillas_arriba"),
+            arrayOf("3","1","z3_Pas endavant", "3","5xCostat","00:01:00","","of_zancadas"),
+            arrayOf("4","1","z4_Aixecament amb bessons", "3","10","00:01:00","","of_gemelos"),
+            arrayOf("5","1","z5_Abdominals", "3","5","00:01:00","","of_abdominales"),
+            arrayOf("6","1","z6_Planxa", "3","30 Segons","00:01:00","","of_plancha"),
 
             //Rutina Dimarts
-            arrayOf("7","2","z1_Flexiones normales", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones normales"),
-            arrayOf("8","2","z2_Flexiones escalonadas", "3","5xCostat","00:01:00","","RutinaDimarts/OF_Flexiones escalonadas"),
-            arrayOf("9","2","z3_Flexiones V", "3","8","00:01:00","","RutinaDimarts/OF_Flexiones v"),
-            arrayOf("10","2","z4_Flexiones diamante", "3","5","00:01:00","","RutinaDimarts/OF_Flexiones diamante"),
-            arrayOf("11","2","z5_Flexiones lumbares", "3","10","00:01:00","","RutinaDimarts/OF_Flexiones lumbares"),
-            arrayOf("12","2","z6_Fondos", "3","6","00:01:00","","RutinaDimarts/OF_Flexiones con silla"),
+            arrayOf("7","2","z1_Flexiones normales", "3","10","00:01:00","","of_flexiones_normales"),
+            arrayOf("8","2","z2_Flexiones escalonadas", "3","5xCostat","00:01:00","","of_flexiones_escalonadas"),
+            arrayOf("9","2","z3_Flexiones V", "3","8","00:01:00","","of_flexiones_v"),
+            arrayOf("10","2","z4_Flexiones diamante", "3","5","00:01:00","","of_flexiones_diamante"),
+            arrayOf("11","2","z5_Flexiones lumbares", "3","10","00:01:00","","of_flexiones_lumbares"),
+            arrayOf("12","2","z6_Fondos", "3","6","00:01:00","","of_lexiones_con_silla"),
 
             //Rutina Dimecres
-            arrayOf("13","3","z1_Tissora braços", "3","30Segons","00:00:20","","RutinaDimecres/OF_Tijera brazos"),
-            arrayOf("14","3","z2_Rotació braços", "3","30Segons","00:00:30","","RutinaDimecres/OF_elevacion brazos"),
-            arrayOf("15","3","z3_Estira braç i cama", "3","5xCostat","00:00:30","","RutinaDimecres/OF_estiramiento"),
-            arrayOf("16","3","z4_Remo", "3","10","00:01:00","","RutinaDimecres/OF_remo"),
-            arrayOf("17","3","z5_Estirament lateral", "3","30SegonsXCostat","00:00:30","","RutinaDimecres/OF_Estiramiento lateral"),
-            arrayOf("18","3","z6_Postura vaca-gat", "3","30Segons","00:00:30","","RutinaDimecres/OF_Estiramiento espalda"),
+            arrayOf("13","3","z1_Tissora braços", "3","30Segons","00:00:20","","of_tijera_brazos"),
+            arrayOf("14","3","z2_Rotació braços", "3","30Segons","00:00:30","","of_elevacion_brazos"),
+            arrayOf("15","3","z3_Estira braç i cama", "3","5xCostat","00:00:30","","of_estiramiento"),
+            arrayOf("16","3","z4_Remo", "3","10","00:01:00","","of_remo"),
+            arrayOf("17","3","z5_Estirament lateral", "3","30SegonsXCostat","00:00:30","","of_estiramiento_lateral"),
+            arrayOf("18","3","z6_Postura vaca-gat", "3","30Segons","00:00:30","","of_estiramiento_espalda"),
 
             //Rutina Divendres
-            arrayOf("19","3","z1_Correr", "1","1","00:00:00","Recomenable corre uns 8Km","RutinaDissabte/OF_Correr"),
-            arrayOf("20","3","z2_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
-            arrayOf("21","3","z2_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
-            arrayOf("22","3","z4_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
-            arrayOf("23","3","z5_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
-            arrayOf("24","3","z6_Correr", "1","1","00:00:00","","RutinaDissabte/OF_Correr"),
+            arrayOf("19","3","z1_Correr", "1","1","00:00:00","Recomenable corre uns 8Km","of_correr"),
+            arrayOf("20","3","z2_Correr", "1","1","00:00:00","","of_correr"),
+            arrayOf("21","3","z2_Correr", "1","1","00:00:00","","of_correr"),
+            arrayOf("22","3","z4_Correr", "1","1","00:00:00","","of_correr"),
+            arrayOf("23","3","z5_Correr", "1","1","00:00:00","","of_correr"),
+            arrayOf("24","3","z6_Correr", "1","1","00:00:00","","of_correr"),
 
             //Rutina Dissabte
-            arrayOf("25","4","z1_Cops a l'aire", "1","30Segons","00:00:30","","RutinaDivendres/OF_golpe boxeo"),
-            arrayOf("26","4","z2_Flexions profundes", "3","10","00:01:00","","RutinaDivendres/OF_flexiones intensivos"),
-            arrayOf("27","4","z2_Escalara montanya", "3","5xCostat","00:01:00","","RutinaDivendres/OF_mountain climbing"),
-            arrayOf("28","4","z4_Burpies", "3","10","00:01:00","","RutinaDivendres/OF_burpies"),
-            arrayOf("29","4","z5_Aixecar cames", "3","10","00:01:00","","RutinaDivendres/OF_Abdominales bajos"),
-            arrayOf("30","4","z6_Planxa", "1","1Minut","","","RutinaDivendres/OF_plancha")
+            arrayOf("25","4","z1_Cops a l'aire", "1","30Segons","00:00:30","","of_golpe_boxeo"),
+            arrayOf("26","4","z2_Flexions profundes", "3","10","00:01:00","","of_flexiones_intensivos"),
+            arrayOf("27","4","z2_Escalara montanya", "3","5xCostat","00:01:00","","of_mountain_climbing"),
+            arrayOf("28","4","z4_Burpies", "3","10","00:01:00","","of_burpies"),
+            arrayOf("29","4","z5_Aixecar cames", "3","10","00:01:00","","of_abdominales_bajos"),
+            arrayOf("30","4","z6_Planxa", "1","1Minut","","","of_plancha")
         )
         //Quan es crea un usuari nou, se'ls crea les rutines per cada usuari amb els exercicis
         if (user != null) {

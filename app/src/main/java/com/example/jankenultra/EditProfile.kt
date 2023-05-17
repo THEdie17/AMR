@@ -21,7 +21,7 @@ class EditProfile : AppCompatActivity() {
     private lateinit var back: Button
     private lateinit var logOut: Button
     private lateinit var auth: FirebaseAuth
-    /*
+    /*ç
     private lateinit var editUser: ImageButton
     private lateinit var editEmail: ImageButton
     private lateinit var editPass: ImageButton
