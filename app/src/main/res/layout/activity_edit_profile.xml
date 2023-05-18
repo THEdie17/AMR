@@ -25,12 +25,14 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="153dp"
-        android:layout_height="162dp"
+        android:layout_width="127dp"
+        android:layout_height="128dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline16"
         app:layout_constraintTop_toTopOf="@+id/guideline15"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/usuario" />
 
     <TextView
@@ -43,16 +45,17 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+        app:layout_constraintTop_toTopOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/rutines"
-        android:layout_width="237dp"
-        android:layout_height="40dp"
+        android:layout_width="239dp"
+        android:layout_height="72dp"
         android:layout_marginTop="4dp"
         android:text="Rutines Completes"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline28"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
@@ -62,11 +65,11 @@
 
     <TextView
         android:id="@+id/ejercicios"
-        android:layout_width="235dp"
-        android:layout_height="39dp"
+        android:layout_width="242dp"
+        android:layout_height="79dp"
         android:text="Exercicis Complets"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline26"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
@@ -76,17 +79,14 @@
 
     <TextView
         android:id="@+id/useEmail"
-        android:layout_width="183dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="231dp"
+        android:layout_height="39dp"
         android:text="User Email"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline20"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="@+id/guideline46" />
 
     <Button
         android:id="@+id/LogOut"
@@ -105,11 +105,12 @@
 
     <TextView
         android:id="@+id/nRutines"
-        android:layout_width="70dp"
-        android:layout_height="41dp"
+        android:layout_width="67dp"
+        android:layout_height="70dp"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline28"
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
@@ -117,8 +118,8 @@
 
     <TextView
         android:id="@+id/nExercisis"
-        android:layout_width="68dp"
-        android:layout_height="40dp"
+        android:layout_width="72dp"
+        android:layout_height="78dp"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -154,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="210dp" />
+        app:layout_constraintGuide_begin="229dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"
@@ -175,14 +176,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
+        app:layout_constraintGuide_begin="183dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="305dp" />
+        app:layout_constraintGuide_begin="325dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
@@ -203,14 +204,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="405dp" />
+        app:layout_constraintGuide_begin="440dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="445dp" />
+        app:layout_constraintGuide_begin="521dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
@@ -224,7 +225,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="347dp" />
+        app:layout_constraintGuide_begin="396dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline29"
@@ -232,5 +233,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="150dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="126dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

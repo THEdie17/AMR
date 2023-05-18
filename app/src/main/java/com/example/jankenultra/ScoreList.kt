@@ -63,7 +63,11 @@ class ScoreList : AppCompatActivity() {
                             suggestion,
                             complete,getDrawableResourceId(imgName),pathing_base
                         )
-                        jugadors.add(j1)
+                        if (jugadors.size < 6) {
+                            jugadors.add(j1)
+                        }else{
+                            jugadors.clear()
+                        }
                     }else{
                         jumpFirst = true
                     }

@@ -1,19 +1,21 @@
 package com.example.jankenultra.adapter
 
-import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.jankenultra.EditProfile
-import com.example.jankenultra.Menu
-import com.example.jankenultra.R
 import com.example.jankenultra.Player
+import com.example.jankenultra.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+
 class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
     val nomExercise= view.findViewById<TextView>(R.id.Nom_exercici1)
     val nReplays = view.findViewById<TextView>(R.id.repetitions1)
@@ -28,34 +30,39 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
 
 
     fun render(JugadorModel: Player){
-        pathing = JugadorModel.pathing
-        nomExercise.text = JugadorModel.nomExercise
-        nReplays.text = JugadorModel.nReplays
-        nSeries.text = JugadorModel.nSeries
-        rest.text = JugadorModel.rest
-        imageEjercico1 = JugadorModel.imgId
+        /*Cuando vas hacia abajo recarga la pagina que a la vez manda una solicitud al adaptador
+        para que se vuelvan a generar los recylcerview haciendo que se vayan a cumulando y asi haciendo
+        que el programa explote*/
         try {
+            pathing = JugadorModel.pathing
+            nomExercise.text = JugadorModel.nomExercise
+            nReplays.text = JugadorModel.nReplays
+            nSeries.text = JugadorModel.nSeries
+            rest.text = JugadorModel.rest
+            imageEjercico1 = JugadorModel.imgId
             Picasso.get()
                 .load(imageEjercico1)
                 .into(image)
-        } catch (e: ArithmeticException) {
-        }
-        suggestion.text = JugadorModel.suggestion
-        complete_ = JugadorModel.complete
-        changeButton()
+            suggestion.text = JugadorModel.suggestion
+            complete_ = JugadorModel.complete
+            changeButton()
 
-        /*
-        * Cambia el valor pero para que lo haga de True -> False requiere un toque pero al reves requiere dos
-        * El boton parpadea de False -> True la primera vez
-        * */
-        completeExcersise.setOnClickListener {
-            if (complete_ == "true"){
-                complete_ = "false"
-            }else{
-                complete_ = "true"
+            /*
+            * Cambia el valor pero para que lo haga de True -> False requiere un toque pero al reves requiere dos
+            * El boton parpadea de False -> True la primera vez
+            * */
+            completeExcersise.setOnClickListener {
+                if (complete_ == "true"){
+                    complete_ = "false"
+                }else{
+                    complete_ = "true"
+                }
+                changeValues()
             }
-            changeValues()
+        } catch (e: Exception) {
+            print(e)
         }
+
     }
 
     fun changeButton(){
@@ -76,13 +83,48 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
     }
     fun changeValues(){
         val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
-        val path = pathing+"/"+nomExercise.text+"/complete"
+        var path = pathing+"/"+nomExercise.text+"/complete"
         if (complete_ == "true"){
-            val myRef = database.getReference(path)  // Reemplaza "ruta_del_valor" con la ruta correcta en tu base de datos
+            //Cambiar valor de "Completado?"
+            var myRef = database.getReference(path)
             myRef.setValue("true")
+
+            //Cambiar valor de "Numero de ejercicios completados"
+            val chain_part = path.split("/").toTypedArray()
+            path = "/"+chain_part[0]+"/"+chain_part[1]+"/complete Exercise"
+            var numeroEntero = 0
+            myRef = database.getReference(path)
+            myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val nExercise = snapshot.getValue(String::class.java)
+                    if (nExercise != null) {
+                        numeroEntero = nExercise.toInt() + 1
+                        myRef.setValue(numeroEntero.toString())
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         }else{
-            val myRef = database.getReference(path)  // Reemplaza "ruta_del_valor" con la ruta correcta en tu base de datos
+            var myRef = database.getReference(path)
             myRef.setValue("false")
+            //Cambiar valor de "Numero de ejercicios completados"
+            val chain_part = path.split("/").toTypedArray()
+            path = "/"+chain_part[0]+"/"+chain_part[1]+"/complete Exercise"
+            var numeroEntero = 0
+            myRef = database.getReference(path)
+            myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val nExercise = snapshot.getValue(String::class.java)
+                    Log.d("pp","/"+chain_part[0]+"/"+chain_part[1]+"/complete Exercise")
+                    if (nExercise != null) {
+                        numeroEntero = nExercise.toInt() - 1
+                        myRef.setValue(numeroEntero.toString())
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         }
         changeButton()
     }

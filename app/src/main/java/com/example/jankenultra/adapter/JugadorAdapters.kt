@@ -22,4 +22,8 @@ class JugadorAdapters(private val jugadors:List<Player>):RecyclerView.Adapter<Ju
         val item=jugadors[position]
         holder.render(item)
     }
+    fun clearItems() {
+        //jugadors.clear()
+    }
 }
+

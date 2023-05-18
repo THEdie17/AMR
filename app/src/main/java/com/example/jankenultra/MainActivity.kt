@@ -22,11 +22,13 @@ class MainActivity : AppCompatActivity() {
         //Assignem els botons de login y sign up
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val registerBtn = findViewById<Button>(R.id.registerButton)
+        val creditBtn = findViewById<Button>(R.id.credits)
 
         //Assignem el estil de lletra als botons
         val tf = Typeface.createFromAsset(assets,"fonts/edosz.ttf")
         loginBtn.typeface = tf
         registerBtn.typeface = tf
+        creditBtn.typeface = tf
 
         //Quan cliquem el botó de login et portarà a la pantalla de login
         loginBtn.setOnClickListener {
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Click Register Button", Toast.LENGTH_LONG).show()
             jumpRegister()
         }
+
+        creditBtn.setOnClickListener {
+            Toast.makeText(this, "Click Credits Button", Toast.LENGTH_LONG).show()
+            jumpCredit()
+        }
     }
 
     //Aquesta es la funció que fem servir per canviar de pantalla del Main al registre
@@ -50,6 +57,11 @@ class MainActivity : AppCompatActivity() {
      //Aquesta es la funció que fem servir per canviar de pantalla del Main al login
     private fun jumpLogin() {
         val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
+
+    private fun jumpCredit() {
+        val intent = Intent(this, Credits::class.java)
         startActivity(intent)
     }
 

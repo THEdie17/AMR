@@ -18,18 +18,18 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/JankenCredits" />
+        app:layout_constraintTop_toBottomOf="@+id/AMRCredits" />
 
     <TextView
-        android:id="@+id/JankenCredits"
+        android:id="@+id/AMRCredits"
         android:layout_width="411dp"
         android:layout_height="130dp"
         android:background="#000000"
         android:paddingTop="50dp"
-        android:text="Janken Ultra"
+        android:text="Active Move Reminder"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="60sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

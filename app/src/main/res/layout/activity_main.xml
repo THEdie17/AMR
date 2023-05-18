@@ -31,13 +31,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="169dp"
-        android:layout_height="84dp"
+        android:layout_width="190dp"
+        android:layout_height="78dp"
         android:backgroundTint="#FFFFFF"
         android:text="Login"
         android:textColor="#000000"
@@ -56,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="558dp" />
+        app:layout_constraintGuide_begin="536dp" />
 
     <Button
         android:id="@+id/registerButton"
@@ -129,28 +131,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="442dp" />
+        app:layout_constraintGuide_begin="430dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="474dp" />
+        app:layout_constraintGuide_begin="452dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="590dp" />
+        app:layout_constraintGuide_begin="557dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="663dp" />
+        app:layout_constraintGuide_begin="627dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -164,6 +166,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="320dp" />
+        app:layout_constraintGuide_end="423dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="643dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="703dp" />
+
+    <Button
+        android:id="@+id/credits"
+        android:layout_width="189dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Credits"
+        android:textColor="#000000"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline45"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toTopOf="@+id/guideline44" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

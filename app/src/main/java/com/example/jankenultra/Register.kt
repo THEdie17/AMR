@@ -121,8 +121,8 @@ class Register : AppCompatActivity() {
         val arrayExercise: Array<Array<String>> = arrayOf(
             //      Id - Rutina - Nom - Series - Repeticions - Descans - Consell - Imatge(URL) - Complert = false
             //Rutina Dilluns
-            arrayOf("1","1","z1_Squats", "3","10","00:01:00","","of_sentadillas"),
-            arrayOf("2","1","z2_Aixecament de genolls", "3","10xCostat","00:01:00","","of_rodillas_arriba"),
+            arrayOf("1","1","z1_Squats", "3","10","00:01:00","Sacar pecho, rodillas alineadas con la punta de los pies","of_sentadillas"),
+            arrayOf("2","1","z2_Aixecament de genolls", "3","10xCostat","00:01:00","Subir la rodilla hasta la altura del maluc","of_rodillas_arriba"),
             arrayOf("3","1","z3_Pas endavant", "3","5xCostat","00:01:00","","of_zancadas"),
             arrayOf("4","1","z4_Aixecament amb bessons", "3","10","00:01:00","","of_gemelos"),
             arrayOf("5","1","z5_Abdominals", "3","5","00:01:00","","of_abdominales"),
