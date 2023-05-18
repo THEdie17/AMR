@@ -15,6 +15,7 @@ class Login : AppCompatActivity() {
     companion object{
         var user_email: String? = null
     }
+    //Les variables que necessitem per logejar el usuari
     private lateinit var emailLogin : EditText
     private lateinit var passLogin : EditText
     private lateinit var login : Button
