@@ -18,28 +18,36 @@ class MainActivity : AppCompatActivity() {
         //assigna valor a user
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
+        
+        //Assignem els botons de login y sign up
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val registerBtn = findViewById<Button>(R.id.registerButton)
 
+        //Assignem el estil de lletra als botons
         val tf = Typeface.createFromAsset(assets,"fonts/edosz.ttf")
         loginBtn.typeface = tf
         registerBtn.typeface = tf
 
+        //Quan cliquem el botó de login et portarà a la pantalla de login
         loginBtn.setOnClickListener {
             Toast.makeText(this, "Click Login Button", Toast.LENGTH_LONG).show()
             jumpLogin()
         }
+        
+        //Quan cliquem el botó de registrar el teu usuari et portarà a la pantalla de registrar-se
         registerBtn.setOnClickListener {
             Toast.makeText(this, "Click Register Button", Toast.LENGTH_LONG).show()
             jumpRegister()
         }
     }
 
+    //Aquesta es la funció que fem servir per canviar de pantalla del Main al registre
     private fun jumpRegister() {
         val intent = Intent(this, Register::class.java)
         startActivity(intent)
     }
 
+     //Aquesta es la funció que fem servir per canviar de pantalla del Main al login
     private fun jumpLogin() {
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
@@ -49,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         usuariLogejat()
         super.onStart()
     }
-
+//Si l'usuari ja esta logejat et portarà a la pantalla de les rutines.
     private fun usuariLogejat() {
         if (user != null) {
             val intent = Intent(this, Menu::class.java)
