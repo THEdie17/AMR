@@ -42,7 +42,7 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
         }
         suggestion.text = JugadorModel.suggestion
         complete_ = JugadorModel.complete
-        //changeButton()
+        changeButton()
 
         /*
         * Cambia el valor pero para que lo haga de True -> False requiere un toque pero al reves requiere dos
