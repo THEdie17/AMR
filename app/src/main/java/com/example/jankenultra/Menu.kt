@@ -1,5 +1,6 @@
 package com.example.jankenultra
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
@@ -169,35 +170,5 @@ class Menu : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-/*
-    override fun onStart() {
-        loggedUser()
-        super.onStart()
-    }
-
-    private fun loggedUser() {
-        if (user != null) {
-            Toast.makeText(
-                this, "Player logged in",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-*/
-    private fun closeTheSession() {
-        auth.signOut() //tanca la sessió
-        //va a la pantalla inicial
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-    fun getPathing():String {
-        pathing_user = String()
-        return pathing_user
     }
 }

@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             jumpRegister()
         }
 
+        //Quan cliquem el botó de registrar el teu usuari et portarà a la pantalla de credits
         creditBtn.setOnClickListener {
             Toast.makeText(this, "Click Credits Button", Toast.LENGTH_LONG).show()
             jumpCredit()
@@ -65,16 +66,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-/*  override fun onStart() {
-        usuariLogejat()
-        super.onStart()
-    }
-//Si l'usuari ja esta logejat et portarà a la pantalla de les rutines.
-    private fun usuariLogejat() {
-        if (user != null) {
-            val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }*/
 }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jankenultra.Player
 import com.example.jankenultra.R
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +27,12 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
     val suggestion = view.findViewById<TextView>(R.id.consejo_ejercicio1)
     var complete_ = "false"
     var completeExcersise = view.findViewById<Button>(R.id.fet1)
-    var pathing = ""
+
+    //Base de datos
+    val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+    var pathing = "" //Path obtenido del usuario actual
+    var path = ""    //Path modificadoble para hacer consultas
+
 
 
     fun render(JugadorModel: Player){
@@ -82,8 +88,7 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     }
     fun changeValues(){
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
-        var path = pathing+"/"+nomExercise.text+"/complete"
+        path = pathing+"/"+nomExercise.text+"/complete"
         if (complete_ == "true"){
             //Cambiar valor de "Completado?"
             var myRef = database.getReference(path)
@@ -116,7 +121,6 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
             myRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val nExercise = snapshot.getValue(String::class.java)
-                    Log.d("pp","/"+chain_part[0]+"/"+chain_part[1]+"/complete Exercise")
                     if (nExercise != null) {
                         numeroEntero = nExercise.toInt() - 1
                         myRef.setValue(numeroEntero.toString())
@@ -126,6 +130,48 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
                 }
             })
         }
+        updateRoutineValue()
         changeButton()
+    }
+
+    fun updateRoutineValue(){
+        var allExTrue = true
+        var countNum = 0
+        val chain_part = pathing.split("/").toTypedArray()
+        //Comprobar si queda algun ejercicio por completar
+        val collectionRef = database.getReference("/"+chain_part[0]+"/"+chain_part[1]+"/"+chain_part[2])
+
+        collectionRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dr in snapshot.children) {
+                    val completeEx = dr.child("complete").value.toString()
+                    if (completeEx == "false") {
+                        allExTrue = false
+                    }
+                    Log.d("pp", completeEx+ " - "+allExTrue)
+                }
+                Log.d("pp", "-"+allExTrue)
+                if (allExTrue) {
+                    val myRef = database.getReference("/"+chain_part[0]+"/"+chain_part[1]+"/complete Routines")
+                    myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val nRoutines = snapshot.getValue(String::class.java)
+                            if (nRoutines != null) {
+                                countNum = nRoutines.toInt() + 1
+                                myRef.setValue(countNum.toString())
+                                Log.d("pp","rutina completada")
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+                }else{
+                    Log.d("pp","rutina no completada")
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
     }
 }

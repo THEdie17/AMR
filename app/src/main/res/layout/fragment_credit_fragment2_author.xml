@@ -73,7 +73,7 @@
                 android:layout_height="176dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
-                android:background="#57385C"
+                android:background="#91E912"
                 android:src="@drawable/pngegg"
                 android:textAlignment="center" />
         </LinearLayout>
