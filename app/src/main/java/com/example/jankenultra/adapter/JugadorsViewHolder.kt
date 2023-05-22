@@ -148,9 +148,7 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
                     if (completeEx == "false") {
                         allExTrue = false
                     }
-                    Log.d("pp", completeEx+ " - "+allExTrue)
                 }
-                Log.d("pp", "-"+allExTrue)
                 if (allExTrue) {
                     val myRef = database.getReference("/"+chain_part[0]+"/"+chain_part[1]+"/complete Routines")
                     myRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -159,14 +157,12 @@ class JugadorsViewHolder(view: View): RecyclerView.ViewHolder(view){
                             if (nRoutines != null) {
                                 countNum = nRoutines.toInt() + 1
                                 myRef.setValue(countNum.toString())
-                                Log.d("pp","rutina completada")
                             }
                         }
                         override fun onCancelled(error: DatabaseError) {
                         }
                     })
                 }else{
-                    Log.d("pp","rutina no completada")
                 }
             }
             override fun onCancelled(error: DatabaseError) {

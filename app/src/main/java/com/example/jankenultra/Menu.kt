@@ -2,17 +2,23 @@ package com.example.jankenultra
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import java.util.*
 
 
 @Suppress("DEPRECATION")
@@ -40,7 +46,7 @@ class Menu : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var emailPlayer: String
     private lateinit var usernamePlayer: String
-
+    private lateinit var database: FirebaseDatabase
     private var user: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +64,8 @@ class Menu : AppCompatActivity() {
         pathing_user = ""
 
         uid = ""
-        val database: FirebaseDatabase =
-            FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+        //val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+        database = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
 
@@ -74,18 +80,9 @@ class Menu : AppCompatActivity() {
                 // utilizar email y name según sea necesario
                 if (uidUser != null) {
                     uid = uidUser
-                }
-                if (email != null) {
-                    emailPlayer = email
-                }
-                if (name != null) {
-                    usernamePlayer = name
-                }
-                if (nRoutines != null) {
-                    NumRoutines= nRoutines
-                }
-                if (nExercise != null) {
-                    NumExercise= nExercise
+
+                    //Comprobar reboot
+                    reboot()
                 }
             }
 
@@ -170,5 +167,81 @@ class Menu : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    //Cada domingo los ejercicios vuelven al estado "No completado"
+    private fun reboot(){
+        //Conseguir el numero de la semana
+        val calendar = Calendar.getInstance()
+        val numeroDiaSemana = calendar.get(Calendar.DAY_OF_WEEK) - 1
+        Log.d("pp"," -"+numeroDiaSemana)
+
+        //Crear un archivo donde guardar el dia de la semana
+        val sharedPreferences = this.getSharedPreferences("rebootAllProgres", Context.MODE_PRIVATE)
+
+        //Comprobar si la clave existe
+        val claveExistente = sharedPreferences.contains("day")
+        /*Si la clave existe, y ha pasado 1 semana los datos de ejercicos hechos dentro de cada rutina
+         vuelven a valor falso para que la siguiente semana pueda volver a hacerlos*/
+        if (claveExistente) {
+            database = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+            val valorInt = sharedPreferences.getInt("day", 0)
+            if (numeroDiaSemana<valorInt){
+                //val myRef = database.getReference("DATA_BASE_AMR/"+uid)
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    updateCompleteValuesToFalse("DATA_BASE_AMR/"+uid)
+                }
+
+            }else{
+                Log.d("pp"," Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
+            }
+        } else {
+            val editor = sharedPreferences.edit()
+            editor.putInt("day", numeroDiaSemana)
+            editor.apply()
+            Log.d("pp","Valor agregado al documento")
+        }
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    fun updateCompleteValuesToFalse(myRef :String) {
+        //val database = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+        val rootCollection = database.getReference(myRef)
+
+        updateCollection(rootCollection)
+    }
+
+    fun updateCollection(reference: DatabaseReference) {
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for (childSnapshot in dataSnapshot.children) {
+                    for (childSnapshot_1 in childSnapshot.children) {
+                        for (childSnapshot_2 in childSnapshot_1.children) {
+
+                            val completeValue = childSnapshot_2.value.toString()
+                            if (completeValue == "true") {
+                                //childSnapshot_2.ref.child("complete").setValue("false")
+                                childSnapshot_2.ref.setValue("false")
+                                Log.d("pp", "-" + completeValue)
+                                Log.d("pp", childSnapshot_2.toString())
+                                //Log.d("pp", "Valor cambiado")
+                            } else {
+                                //Log.d("pp", "Valor no cambiado")
+                            }
+
+
+                            // Verificar si hay subreferencias
+                            //val subReference = childSnapshot_1.ref.child("subcoleccion")
+                            //updateCollection(subReference) // Llamada recursiva para procesar las subreferencias
+                        }
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("pp", "Error al obtener datos: ${databaseError.message}")
+            }
+        })
     }
 }

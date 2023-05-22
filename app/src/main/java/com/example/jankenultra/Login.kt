@@ -1,21 +1,14 @@
 package com.example.jankenultra
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import java.util.*
 
 
 class Login : AppCompatActivity() {
@@ -83,43 +76,5 @@ class Login : AppCompatActivity() {
     private fun updateUI() {
         val intent = Intent(this, Menu::class.java)
         startActivity(intent)
-    }
-
-    //Cada domingo los ejercicios vuelven al estado "No completado"
-    private fun reboot(){
-        //Conseguir el numero de la semana
-        val calendar = Calendar.getInstance()
-        val numeroDiaSemana = calendar.get(Calendar.DAY_OF_WEEK) - 1
-
-        //Crear un archivo donde guardar el dia de la semana
-        val sharedPreferences = this.getSharedPreferences("rebootAllProgres", Context.MODE_PRIVATE)
-
-        //Comprobar si la clave existe
-         val claveExistente = sharedPreferences.contains("day")
-        if (claveExistente) {
-            val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
-            val valorInt = sharedPreferences.getInt("day", 0)
-                if (numeroDiaSemana>valorInt){
-                    val myRef = database.getReference("DATA_BASE_AMR/"+user)
-                    myRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val nRoutines = snapshot.getValue(String::class.java)
-                            if (nRoutines != null) {
-                                countNum = nRoutines.toInt() + 1
-                                myRef.setValue(countNum.toString())
-                                Log.d("pp","rutina completada")
-                            }
-                        }
-                        override fun onCancelled(error: DatabaseError) {
-                        }
-                    })
-                }
-        } else {
-            val editor = sharedPreferences.edit()
-            editor.putInt("day", numeroDiaSemana)
-            editor.apply()
-        }
-
-
     }
 }
