@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="#FFFFFF">
 
+
     <TextView
         android:id="@+id/Nom_exercici1"
         android:layout_width="wrap_content"
@@ -20,18 +21,15 @@
 
     <TextView
         android:id="@+id/consejo_ejercicio1"
-        android:layout_width="194dp"
-        android:layout_height="33dp"
-        android:paddingBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Consejo"
         android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#000000"
-        android:textColorLink="#000000"
         app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline30"
         app:layout_constraintTop_toTopOf="@+id/guideline38" />
+
 
     <ImageView
         android:id="@+id/imageEjercico1"
@@ -190,5 +188,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="314dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline32"
+        app:layout_constraintStart_toStartOf="@+id/guideline30"
+        app:layout_constraintTop_toBottomOf="@+id/consejo_ejercicio1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

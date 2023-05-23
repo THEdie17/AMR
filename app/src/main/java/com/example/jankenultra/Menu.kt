@@ -126,15 +126,18 @@ class Menu : AppCompatActivity() {
             startActivity(intent)
         }
         */
-
+        //Botó que porta al perfil del usuari
         profileBtn.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)//Cambiar el destinio
             startActivity(intent)
         }
+        //Ens retorna a la pantalla de rutines
         backBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        //Obra la pantalla dels exercicis del dilluns
         buttonmonday.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dilluns"
                     //"/DATA_BASE_AMR/hEzKISzJ4fbmg17nhRK122HVXWo1/z_Rutina Dilluns"
@@ -142,24 +145,32 @@ class Menu : AppCompatActivity() {
             intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
+
+        //Obra la pantalla dels exercicis del dimarts
         tuesdayButton.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dimarts"
             val intent = Intent(this, ScoreList::class.java)
             intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
+
+        //Obra la pantalla dels exercicis del dimecres
         WednsdayButton.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dimecres"
             val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
             intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
+
+        //Obra la pantalla dels exercicis del divendres
         fridayButton.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Divendres"
             val intent = Intent(this, ScoreList::class.java)
             intent.putExtra("PATH",pathing_user)
             startActivity(intent)
         }
+
+        //Obra la pantalla dels exercicis del dissabte
         saturdayButton.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/zz_Rutina Dissabte"
             val intent = Intent(this, ScoreList::class.java)
@@ -174,10 +185,9 @@ class Menu : AppCompatActivity() {
         //Conseguir el numero de la semana
         val calendar = Calendar.getInstance()
         val numeroDiaSemana = calendar.get(Calendar.DAY_OF_WEEK) - 1
-        Log.d("pp"," -"+numeroDiaSemana)
 
         //Crear un archivo donde guardar el dia de la semana
-        val sharedPreferences = this.getSharedPreferences("rebootAllProgres", Context.MODE_PRIVATE)
+        val sharedPreferences = this.getSharedPreferences("rebootAllProgres.txt", Context.MODE_PRIVATE)
 
         //Comprobar si la clave existe
         val claveExistente = sharedPreferences.contains("day")
@@ -192,16 +202,21 @@ class Menu : AppCompatActivity() {
                 GlobalScope.launch(Dispatchers.IO) {
                     updateCompleteValuesToFalse("DATA_BASE_AMR/"+uid)
                 }
+                Log.d("peteFullCharged","El valor: " + valorInt)
 
             }else{
                 Log.d("pp"," Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
             }
         } else {
-            val editor = sharedPreferences.edit()
-            editor.putInt("day", numeroDiaSemana)
-            editor.apply()
-            Log.d("pp","Valor agregado al documento")
+            Log.d("pete","El valor no existe: " + claveExistente)
         }
+
+        //Serveix per actualitzar/crear
+        val editor = sharedPreferences.edit()
+        editor.putInt("day", numeroDiaSemana)
+        editor.apply()
+        val valorInt = sharedPreferences.getInt("day", 0)
+        Log.d("pete","El nuevo valor: " + valorInt)
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
@@ -224,11 +239,11 @@ class Menu : AppCompatActivity() {
                             if (completeValue == "true") {
                                 //childSnapshot_2.ref.child("complete").setValue("false")
                                 childSnapshot_2.ref.setValue("false")
-                                Log.d("pp", "-" + completeValue)
-                                Log.d("pp", childSnapshot_2.toString())
+                                //Log.d("pp", "-" + completeValue)
+                                //Log.d("pp", childSnapshot_2.toString())
                                 //Log.d("pp", "Valor cambiado")
                             } else {
-                                //Log.d("pp", "Valor no cambiado")
+                                Log.d("pp", "Valor no cambiado")
                             }
 
 
