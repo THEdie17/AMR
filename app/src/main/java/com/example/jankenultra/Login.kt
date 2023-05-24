@@ -10,12 +10,17 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
-
+/**
+ * A group of *Diego y Hang*.
+ *
+ * Classe que maneja la visualizacion de cuando inicias session con tus datos
+ */
 class Login : AppCompatActivity() {
     companion object{
         var user_email: String? = null
     }
-    //Les variables que necessitem per logejar el usuari
+
+    //Les variables que necessitamos para inicar sessión con el usuario creado
     private lateinit var emailLogin : EditText
     private lateinit var passLogin : EditText
     private lateinit var login : Button
@@ -24,35 +29,39 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-
-        //Despleguem les variables que farem servir
+        // Desplegamos las variables que utilizaremos
         emailLogin = findViewById(R.id.emailLogin)
         passLogin = findViewById(R.id.passLogin)
         auth = FirebaseAuth.getInstance()
         login = findViewById(R.id.login)
 
-        //Aquesta variable tf ens serveix per poder cambiar el estil de la lletra que es veurà
+
+        //Esta variable tf nos sirve para cambiar el estilo de la letra
         val tf = Typeface.createFromAsset(assets,"fonts/edosz.ttf")
         login.typeface = (tf)
 
-        //Aquest fragment és per validar que tant el email i la password introduïdes són correctes 
+        //Este fragmento és para validar que tanto el gmail y la password introducidas són correctas
         login.setOnClickListener {
-            //Abans de fer el registre validem les dades
+            //Antes de hacer el registro comprobamos que sean correctas
             val email: String = emailLogin.text.toString()
             val passw: String = passLogin.text.toString()
-            // validació del correu
-            // si no es de tipus correu
+            // validación del correo
+            // si no es de tipus correo
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailLogin.error = "Invalid Mail"
-            } else if (passw.length < 6) {//Validem que el tamany de la password sigui correcte
+            } else if (passw.length < 6) {//Validamos que el tamaño de la password sea correcto
                 passLogin.error = "Password less than 6 chars"
             } else {
-                // aquí farem LOGIN al jugador
+                // Aquí haremos LOGIN al jugador
                 playerLogin(email, passw)
             }
         }
     }
-//Comprovar que les dades de email i password són correctes i que abans ja han siguit registrades
+    /**
+     * Funcion para comprovar que les dades de gmail y password són correctas y que antes hayan sido registradas
+     * @param email email que el usuario  utiliza
+     * @param passw password del usuario
+     */
     private fun playerLogin(email: String, passw: String) {
         auth.signInWithEmailAndPassword(email, passw)
             .addOnCompleteListener(this)
@@ -72,7 +81,9 @@ class Login : AppCompatActivity() {
             }
     }
 
-    //Aquesta funció ens portarà si tot es correccte i apretem el botó de login a la pantalla de les rutines
+    /**
+     *  Esta función nos llevarà a la página de las rutinas una vez la comprovacion de los datos sea correcto
+     */
     private fun updateUI() {
         val intent = Intent(this, Menu::class.java)
         startActivity(intent)

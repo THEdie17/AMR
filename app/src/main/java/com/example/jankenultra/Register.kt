@@ -12,10 +12,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * A group of *Diego y Hang*.
+ *
+ * Classe que maneja la visualizacion de la creación de un usuario nuevo
+ */
 class Register : AppCompatActivity() {
 //Declarem les variables que farem servir
     private lateinit var pathing: String
@@ -24,7 +27,7 @@ class Register : AppCompatActivity() {
     private lateinit var nameEt: EditText
     private lateinit var register: Button
     private lateinit var auth: FirebaseAuth
-    val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+    private val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -35,20 +38,16 @@ class Register : AppCompatActivity() {
         register = findViewById(R.id.register)
         auth = FirebaseAuth.getInstance()
 
-        val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat.getDateInstance() //or use getDateInstance()
-        val formattedDate = formatter.format(date)
-
         val tf = Typeface.createFromAsset(assets,"fonts/edosz.ttf")
 
         register.typeface = tf
 
         register.setOnClickListener {
-            //Abans de fer el registre validem les dades
+            //Antes de hacer el registro comprobamos que sean correctas
             val email: String = emailEt.text.toString()
             val pass: String = passEt.text.toString()
-            // validació del correu
-            // si no es de tipus correu
+            // validación del correo
+            // si no es de tipus correo
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailEt.error = "Invalid Mail"
             } else if (pass.length < 6) {
@@ -59,7 +58,11 @@ class Register : AppCompatActivity() {
         }
     }
 
-//Para registrar el email i el password
+    /**
+     * Funcion para comprovar que les dades de gmail y password són correctas
+     * @param email email que el usuario  utiliza
+     * @param passw password del usuario
+     */
     private fun registerPlayer(email: String, pass: String) {
         auth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
@@ -74,8 +77,13 @@ class Register : AppCompatActivity() {
             }
     }
 
+
+    /**
+     *  Esta función es para crear el usuario
+     *  @param user la uID del usuario
+     */
     private fun updateUI(user: FirebaseUser?) = //hi ha un interrogant perquè podria ser null
-        //Si el usuari no existeix quan es crea, les dades que s'han de introduïr
+        //Si el usuario no existe cuando se crea, los datos que se deben introducir
         if (user != null) {
             val uidString: String = user.uid
             val emailString: String = emailEt.text.toString()
@@ -85,21 +93,19 @@ class Register : AppCompatActivity() {
             val completeExercise = 0
 
             val dadesJugador : HashMap<String,String> = HashMap<String, String>()
-            //Dades que es guarden a la base de dades quan el jugador es registra
+            //Datos que se guardan a la base de dades cuando el jugador se registra
             dadesJugador["Uid"] = uidString
             dadesJugador["Email"] = emailString
             dadesJugador["Password"] = passString
             dadesJugador["Name"] = usernameString
             dadesJugador["complete Routines"] = completeRoutines.toString()
             dadesJugador["complete Exercise"] = completeExercise.toString()
-            // Creem un punter a la base de dades i li donem un nom
+            // Creamos un puntero a la base de dades y le damos un nombre
             val reference: DatabaseReference = database.getReference("DATA_BASE_AMR")
 
-            if(reference!=null) {
-                //crea un fill amb els valors de dadesJugador
-                reference.child(uidString).setValue(dadesJugador)
-                makeRoutines(uidString)
-            }
+            //crea un hilo con los valores de dadesJugador
+            reference.child(uidString).setValue(dadesJugador)
+            makeRoutines(uidString)
             val intent= Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
@@ -108,7 +114,10 @@ class Register : AppCompatActivity() {
         }
 
 
-    //Creem les rutines dintre del Array
+    /**
+     * Funcion para crear las rutinas y sus respectivos ejercicios como subcolecciones del usuario anteriormente creado
+     * @param user la uID del usuario
+     */
     private fun makeRoutines(user: String){
         val arrayRoutines: Array<Array<String>> = arrayOf(
             //      Id - Nom rutina - Dia - Objectiu - Complert = false
@@ -161,60 +170,44 @@ class Register : AppCompatActivity() {
             arrayOf("30","4","z6_Planxa", "1","1 Minut","00:00:20","Mantenir el cos paral·lel al terra sense \n\n ficar els genolls al terra.","of_plancha")
         )
         //Quan es crea un usuari nou, se'ls crea les rutines per cada usuari amb els exercicis
-        if (user != null) {
-            var num_exe = 0
-            for (i in 0 until arrayRoutines.size) {
-                val id_Routine = arrayRoutines[i][0]
-                val nameRoutine: String = arrayRoutines[i][1]
-                val weekDay = arrayRoutines[i][2]
-                val objective: String = arrayRoutines[i][3]
-                val complete: Boolean = false
+        var num_exe = 0
+        for (element in arrayRoutines) {
+            val nameRoutine: String = element[1]
 
-                val dadesJugador : HashMap<String,String> = HashMap<String, String>()
+            val dadesJugador : HashMap<String,String> = HashMap<String, String>()
 
-                //dadesJugador["ID_Routine"] = id_Routine
-                //dadesJugador["nameRoutine"] = nameRoutine
-                //dadesJugador["weekDay"] = weekDay
-                //dadesJugador["objective"] = objective
-                dadesJugador["Uid"] = user
-                //dadesJugador["complete"] = complete.toString()
+            dadesJugador["Uid"] = user
+            // Creem un punter a la base de dades i li donem un nom
+            val reference: DatabaseReference = database.getReference("DATA_BASE_AMR/$user")
+            //crea un fill amb els valors de dadesJugador
+            reference.child("z$nameRoutine").setValue(dadesJugador)
+
+            for (j in 1..6) {
+                val id_exercise = arrayExercise[num_exe][0]
+                val id_Routine = arrayExercise[num_exe][1]
+                val nameExercise: String = arrayExercise[num_exe][2]
+                val nSeries: String = arrayExercise[num_exe][3]
+                val nReplays: String = arrayExercise[num_exe][4]
+                val rest: String = arrayExercise[num_exe][5]
+                val suggestion: String = arrayExercise[num_exe][6]
+                val imgName = arrayExercise[num_exe][7]
+                val complete = false
+
+                val dadesRutines : HashMap<String,String> = HashMap<String, String>()
+                dadesRutines["ID_Exercise"] = id_exercise
+                dadesRutines["ID_Routine"] = id_Routine
+                dadesRutines["nameExercise"] = nameExercise
+                dadesRutines["nSeries"] = nSeries
+                dadesRutines["nReplays"] = nReplays
+                dadesRutines["rest"] = rest
+                dadesRutines["suggestion"] = suggestion
+                dadesRutines["imgName"] = imgName
+                dadesRutines["complete"] = complete.toString()
                 // Creem un punter a la base de dades i li donem un nom
-                val reference: DatabaseReference = database.getReference("DATA_BASE_AMR/"+user)
-                if(reference!=null) {
-                    //crea un fill amb els valors de dadesJugador
-                    reference.child("z"+nameRoutine).setValue(dadesJugador)
-
-                    for (j in 1..6) {
-                        val id_exercise = arrayExercise[num_exe][0]
-                        val id_Routine = arrayExercise[num_exe][1]
-                        val nameExercise: String = arrayExercise[num_exe][2]
-                        val nSeries: String = arrayExercise[num_exe][3]
-                        val nReplays: String = arrayExercise[num_exe][4]
-                        val rest: String = arrayExercise[num_exe][5]
-                        val suggestion: String = arrayExercise[num_exe][6]
-                        val imgName = arrayExercise[num_exe][7]
-                        val complete: Boolean = false
-
-                        val dadesRutines : HashMap<String,String> = HashMap<String, String>()
-                        dadesRutines["ID_Exercise"] = id_exercise
-                        dadesRutines["ID_Routine"] = id_Routine
-                        dadesRutines["nameExercise"] = nameExercise
-                        dadesRutines["nSeries"] = nSeries
-                        dadesRutines["nReplays"] = nReplays
-                        dadesRutines["rest"] = rest
-                        dadesRutines["suggestion"] = suggestion
-                        dadesRutines["imgName"] = imgName
-                        dadesRutines["complete"] = complete.toString()
-                        // Creem un punter a la base de dades i li donem un nom
-                        val reference2: DatabaseReference = database.getReference("DATA_BASE_AMR/"+user+"/z" + nameRoutine)
-                        if(reference2!=null) {
-                            //crea un fill amb els valors de dadesJugador
-                            reference2.child(nameExercise).setValue(dadesRutines)
-                        }
-                        num_exe = num_exe + 1
-                        pathing = "DATA_BASE_AMR/"+user+"/z" + nameRoutine
-                    }
-                }
+                val reference2: DatabaseReference = database.getReference("DATA_BASE_AMR/$user/z$nameRoutine")
+                reference2.child(nameExercise).setValue(dadesRutines)
+                num_exe += 1
+                pathing = "DATA_BASE_AMR/$user/z$nameRoutine"
             }
         }
     }

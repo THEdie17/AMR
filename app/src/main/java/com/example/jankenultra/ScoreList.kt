@@ -1,21 +1,30 @@
 package com.example.jankenultra
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jankenultra.adapter.JugadorAdapters
 import com.google.firebase.database.*
 
+/**
+ * Variables utilizadas en la classe
+ */
+@SuppressLint("StaticFieldLeak")
 private lateinit var back: Button
 
 private lateinit var pathing_base: String
-public var img: Int = 0
 
+/**
+ * A group of *Diego y Hang*.
+ *
+ * Classe que maneja la visualizacion de los ejercicios
+ */
+@Suppress("DEPRECATION", "NAME_SHADOWING")
 class ScoreList : AppCompatActivity() {
     val jugadors = mutableListOf<Player>()
 
@@ -23,7 +32,7 @@ class ScoreList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score_list)
 
-        var intent:Bundle? = intent.extras
+        val intent:Bundle? = intent.extras
         pathing_base = intent?.get("PATH").toString()
         consulta()
 
@@ -34,28 +43,34 @@ class ScoreList : AppCompatActivity() {
         }
     }
 
+    /**
+     * Funcion para crear los recycledViews
+     */
     private fun initReciclerView(){
         val reciclerView = findViewById<RecyclerView>(R.id.ReciclerOne)
         reciclerView.layoutManager = LinearLayoutManager(this)
         reciclerView.adapter = JugadorAdapters(jugadors)
     }
 
+    /**
+     * Esta funcion la utilizamos para consultar los ejercicios del usuario
+     */
     private fun consulta(){
         val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
         var jumpFirst = false
-        val bdreference: DatabaseReference = database.getReference("/"+pathing_base)
+        val bdreference: DatabaseReference = database.getReference("/$pathing_base")
         bdreference.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (dr in snapshot.children){
                     if (jumpFirst) {
-                        var nomExercise = dr.child("nameExercise").value.toString()
-                        var nReplays = dr.child("nReplays").value.toString()
-                        var nSeries = dr.child("nSeries").value.toString()
-                        var rest = dr.child("rest").value.toString()
-                        var imgName = dr.child("imgName").value.toString()
-                        var suggestion = dr.child("suggestion").value.toString()
-                        var complete = dr.child("complete").value.toString()
-                        var j1: Player = Player(
+                        val nomExercise = dr.child("nameExercise").value.toString()
+                        val nReplays = dr.child("nReplays").value.toString()
+                        val nSeries = dr.child("nSeries").value.toString()
+                        val rest = dr.child("rest").value.toString()
+                        val imgName = dr.child("imgName").value.toString()
+                        val suggestion = dr.child("suggestion").value.toString()
+                        val complete = dr.child("complete").value.toString()
+                        val j1 = Player(
                             nomExercise,
                             nReplays,
                             nSeries,
@@ -82,6 +97,12 @@ class ScoreList : AppCompatActivity() {
         })
     }
 
+    /**
+     * Funcion que consigue el identificador de cada foto para los ejercicios
+     * @param imgName Nombre de la imagen de la qual queremos su identificador
+     * @return nos devuelve el identificador de la imagen
+     */
+    @SuppressLint("DiscouragedApi")
     private fun getDrawableResourceId(imgName: String): Int {
         return resources.getIdentifier(imgName, "drawable", packageName)
     }

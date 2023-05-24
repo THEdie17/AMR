@@ -29,6 +29,10 @@ class CreditFragment2Author : Fragment() {
         }
     }
 
+    /**
+     * Funcion que asigna los elementos que se van a mostrar
+     * @return devuelve la vista
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {

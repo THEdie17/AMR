@@ -23,9 +23,6 @@
     <string name="jugarBtn">Play</string>
     <string name="PuntuacionsBtn">High Scores</string>
     <string name="CreditsBtn">Credits</string>
-    <string name="level1" translatable="false">Credits</string>
-    <string name="level2" translatable="false">Credits</string>
-    <string name="level3" translatable="false">Credits</string>
     <string name="back" translatable="false">Credits</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

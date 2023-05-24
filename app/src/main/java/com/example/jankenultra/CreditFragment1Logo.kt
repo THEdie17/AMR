@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 
 
 // TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+/**
+ * the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+ */
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -33,6 +35,10 @@ class CreditFragment1Logo : Fragment() {
         }
     }
 
+    /**
+     * Funcion que asigna los elementos que se van a mostrar
+     * @return devuelve la vista
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +50,7 @@ class CreditFragment1Logo : Fragment() {
         tv.typeface = myTypeface
         return view
     }
+
 
     companion object {
         /**
