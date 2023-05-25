@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jankenultra.adapter.JugadorAdapters
@@ -16,7 +17,10 @@ import com.google.firebase.database.*
  */
 @SuppressLint("StaticFieldLeak")
 private lateinit var back: Button
-
+@SuppressLint("StaticFieldLeak")
+private lateinit var toLogin: ImageButton
+@SuppressLint("StaticFieldLeak")
+private lateinit var toProfile: ImageButton
 private lateinit var pathing_base: String
 
 /**
@@ -35,6 +39,18 @@ class ScoreList : AppCompatActivity() {
         val intent:Bundle? = intent.extras
         pathing_base = intent?.get("PATH").toString()
         consulta()
+
+        toLogin = findViewById(R.id.buttomenu)
+        toLogin.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        toProfile = findViewById(R.id.buttonuser)
+        toProfile.setOnClickListener {
+            val intent = Intent(this, EditProfile::class.java)
+            startActivity(intent)
+        }
 
         back = findViewById(R.id.button2)
         back.setOnClickListener {
