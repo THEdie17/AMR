@@ -28,7 +28,7 @@ class Menu : AppCompatActivity() {
     private lateinit var backBtn: ImageButton
     private lateinit var buttonmonday: ImageButton
     private lateinit var tuesdayButton: ImageButton
-    private lateinit var WednesdayButton: ImageButton
+    private lateinit var wednesdayButton: ImageButton
     private lateinit var fridayButton: ImageButton
     private lateinit var saturdayButton: ImageButton
     private lateinit var pathing_user: String
@@ -45,7 +45,7 @@ class Menu : AppCompatActivity() {
         //Rutinas
         buttonmonday = findViewById(R.id.buttonmonday)
         tuesdayButton = findViewById(R.id.tuesdayButton)
-        WednesdayButton = findViewById(R.id.WednsdayButton)
+        wednesdayButton = findViewById(R.id.WednsdayButton)
         fridayButton = findViewById(R.id.fridayButton)
         saturdayButton = findViewById(R.id.saturdayButton)
         pathing_user = ""
@@ -104,7 +104,7 @@ class Menu : AppCompatActivity() {
         }
 
         //Abre la pantalla de los ejercicios del Miércoles
-        WednesdayButton.setOnClickListener {
+        wednesdayButton.setOnClickListener {
             pathing_user = "DATA_BASE_AMR/"+uid+"/z_Rutina Dimecres"
             val intent = Intent(this, ScoreList::class.java)//Cambiar el destinio
             intent.putExtra("PATH",pathing_user)

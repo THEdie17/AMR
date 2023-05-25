@@ -36,7 +36,7 @@ class Credits : AppCompatActivity() {
          * Cuando clicamos el botón a que pantalla nos llevara
          */
         button.setOnClickListener {
-            val intent = android.content.Intent(this, Menu::class.java)
+            val intent = android.content.Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

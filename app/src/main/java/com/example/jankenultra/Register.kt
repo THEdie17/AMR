@@ -61,7 +61,7 @@ class Register : AppCompatActivity() {
     /**
      * Funcion para comprovar que les dades de gmail y password són correctas
      * @param email email que el usuario  utiliza
-     * @param passw password del usuario
+     * @param pass password del usuario
      */
     private fun registerPlayer(email: String, pass: String) {
         auth.createUserWithEmailAndPassword(email, pass)
