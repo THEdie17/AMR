@@ -89,8 +89,6 @@ class Register : AppCompatActivity() {
             val emailString: String = emailEt.text.toString()
             val passString: String = passEt.text.toString()
             val usernameString: String = nameEt.text.toString()
-            val completeRoutines = 0
-            val completeExercise = 0
 
             val dadesJugador : HashMap<String,String> = HashMap<String, String>()
             //Datos que se guardan a la base de dades cuando el jugador se registra
@@ -98,8 +96,9 @@ class Register : AppCompatActivity() {
             dadesJugador["Email"] = emailString
             dadesJugador["Password"] = passString
             dadesJugador["Name"] = usernameString
-            dadesJugador["complete Routines"] = completeRoutines.toString()
-            dadesJugador["complete Exercise"] = completeExercise.toString()
+            dadesJugador["complete Routines"] = "0"
+            dadesJugador["complete Exercise"] = "0"
+            dadesJugador["Racha"] = "0"
             // Creamos un puntero a la base de dades y le damos un nombre
             val reference: DatabaseReference = database.getReference("DATA_BASE_AMR")
 

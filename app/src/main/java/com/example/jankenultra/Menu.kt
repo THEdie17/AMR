@@ -148,14 +148,25 @@ class Menu : AppCompatActivity() {
          vuelven a valor falso para que la siguiente semana pueda volver a hacerlos*/
         if (claveExistente) {
             database = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
+            var myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
             val valorInt = sharedPreferences.getInt("day", 0)
+
             if (numeroDiaSemana<valorInt){
                 //val myRef = database.getReference("DATA_BASE_AMR/"+uid)
-
                 GlobalScope.launch(Dispatchers.IO) {
                     updateCompleteValuesToFalse("DATA_BASE_AMR/$uid")
                 }
                 //Log.d("peteFullCharged","El valor: " + valorInt)
+
+            //Empieza racha
+            }else if(numeroDiaSemana==(valorInt+1) && (numeroDiaSemana==1 || numeroDiaSemana==2 || numeroDiaSemana==3 || numeroDiaSemana==6)){
+                moreStreak()
+                Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
+            }else if(numeroDiaSemana==(valorInt+2) && numeroDiaSemana==5){
+                moreStreak()
+                Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
+            }else{
+                myRef.setValue("0")
 
             }/*else{
                 Log.d("pp"," Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
@@ -204,6 +215,22 @@ class Menu : AppCompatActivity() {
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("pp", "Error al obtener datos: ${databaseError.message}")
+            }
+        })
+    }
+
+    private fun moreStreak(){
+        var Streak = 0
+        var myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val nRacha = snapshot.getValue(String::class.java)
+                if (nRacha != null) {
+                    Streak = nRacha.toInt() + 1
+                    myRef.setValue(Streak.toString())
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }

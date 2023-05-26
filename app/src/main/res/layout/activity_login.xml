@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/purple_500"
-            android:text="@string/LOGINBTN"
+            android:text="Iniciar Sessió"
             android:textColor="#000000"
             android:textStyle="bold" />
     </LinearLayout>
