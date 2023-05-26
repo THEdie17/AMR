@@ -1,6 +1,6 @@
 Project: JankenUltra (Android Studio : Kotlin)
 
-Authors:  Iker Sanchez Fernández
+Authors:  Hang Núñez Barragán
           Diego Fernández Sanz
           
 I.E.S. Castellet
