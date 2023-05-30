@@ -148,7 +148,7 @@ class Menu : AppCompatActivity() {
          vuelven a valor falso para que la siguiente semana pueda volver a hacerlos*/
         if (claveExistente) {
             database = FirebaseDatabase.getInstance("https://junkerultra-default-rtdb.europe-west1.firebasedatabase.app/")
-            var myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
+            val myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
             val valorInt = sharedPreferences.getInt("day", 0)
 
             if (numeroDiaSemana<valorInt){
@@ -161,10 +161,10 @@ class Menu : AppCompatActivity() {
             //Empieza racha
             }else if(numeroDiaSemana==(valorInt+1) && (numeroDiaSemana==1 || numeroDiaSemana==2 || numeroDiaSemana==3 || numeroDiaSemana==6)){
                 moreStreak()
-                Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
+                //Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
             }else if(numeroDiaSemana==(valorInt+2) && numeroDiaSemana==5){
                 moreStreak()
-                Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
+                //Log.d("pp","Racha1 Actual: "+numeroDiaSemana+" Anterior:"+valorInt)
             }else{
                 myRef.setValue("0")
 
@@ -206,21 +206,21 @@ class Menu : AppCompatActivity() {
                             val completeValue = childSnapshot_2.value.toString()
                             if (completeValue == "true") {
                                 childSnapshot_2.ref.setValue("false")
-                            } else {
+                            }/* else {
                                 Log.d("pp", "Valor no cambiado")
-                            }
+                            }*/
                         }
                     }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.e("pp", "Error al obtener datos: ${databaseError.message}")
+                //Log.e("pp", "Error al obtener datos: ${databaseError.message}")
             }
         })
     }
 
     private fun moreStreak(){
-        var myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
+        val myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val nRacha = snapshot.getValue(String::class.java)
