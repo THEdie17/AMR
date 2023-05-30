@@ -220,14 +220,12 @@ class Menu : AppCompatActivity() {
     }
 
     private fun moreStreak(){
-        var Streak = 0
         var myRef = database.getReference("DATA_BASE_AMR/$uid/Racha")
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val nRacha = snapshot.getValue(String::class.java)
                 if (nRacha != null) {
-                    Streak = nRacha.toInt() + 1
-                    myRef.setValue(Streak.toString())
+                    myRef.setValue((nRacha.toInt() + 1).toString())
                 }
             }
             override fun onCancelled(error: DatabaseError) {
